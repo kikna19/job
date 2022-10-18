@@ -1,0 +1,97 @@
+<div>
+    <div class="auth_header">
+        <img [routerLink]="'/'" src="./assets/images/logo/header_logo.svg" alt="WeCruitment" class="center" />
+    </div>
+    <div class="wrapper">
+        <div class="auth_container login">
+            <div class="auth_title">
+                <img src="./assets/images/icon/key.svg" />
+                <span> Sign up</span>
+            </div> 
+          
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmitUserDetails()" novalidate>
+                <div class="name_wrapper">
+                    <div class="form-group name">
+                        <label>Name</label>
+                        <div class="form-control-wrapper">
+                        <input type="text" class="form-control" required placeholder="Enter your name" formControlName="firstName"  
+                        [ngClass]="{ 'is-invalid': signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched) }">
+                        <span *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
+                         class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="First Name is required"></span>
+                        </div>  
+                    </div>
+                    <div class="form-group surname">
+                        <label>Surname</label>
+                        <div class="form-control-wrapper">
+                        <input type="text" class="form-control" required placeholder="Enter your surname"   formControlName="lastName"
+                        [ngClass]="{ 'is-invalid': signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched) }">                     
+                        <span *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)"
+                        class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="LastName is required"></span>
+                       </div>  
+                    </div>
+                </div>
+
+                <div class="form-group email">
+                    <label>Email</label>
+                    <div class="form-control-wrapper">
+                    <input type="email" class="form-control" required placeholder="Enter your personal email" formControlName="email" 
+                    [ngClass]="{ 'is-invalid': signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched) }">                     
+                    <span *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Email is required"></span>
+                    <span *ngIf="signupForm.controls['email'].errors?.['pattern']"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Invalid Email"></span>
+                   </div>  
+                </div>
+
+                <div class="form-group Phone">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" placeholder="+31 97 010 1536" formControlName="phoneNumber">
+                </div>
+
+                <div class="form-group password">
+                    <label>Password</label>
+                    <div class="form-control-wrapper">
+                    <input type="password" class="form-control" required placeholder="Enter password" formControlName="password" autocomplete="on"
+                    [ngClass]="{ 'is-invalid': signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched) }">    
+                    <span *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Password is required"></span>
+                    <span *ngIf="signupForm.controls['password'].errors?.['pattern']"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Invalid Password pattern"></span>
+                   </div> 
+                </div>
+
+                <div class="form-group password-repeat">
+                    <label>Repeat Password</label>
+                    <div class="form-control-wrapper">
+                    <input type="password" class="form-control" required placeholder="Repeat password" formControlName="repeatPassword" autocomplete="on"
+                    [ngClass]="{ 'is-invalid': signupForm.controls['password'].value !== signupForm.controls['repeatPassword'].value || signupForm.controls['repeatPassword'].invalid && (signupForm.controls['repeatPassword'].dirty || signupForm.controls['repeatPassword'].touched) }">    
+                    <span *ngIf="signupForm.controls['repeatPassword'].invalid && (signupForm.controls['repeatPassword'].dirty || signupForm.controls['repeatPassword'].touched)"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Password is required"></span>
+                    <span *ngIf="signupForm.controls['password'].value !== signupForm.controls['repeatPassword'].value"
+                    class="error-icon-hover-area" data-toggle="tooltip" data-placement="right" title="Passwords does not match"></span>
+                   </div> 
+                </div>
+
+                <div class="file_ipload">
+                    <span>CV</span>
+                    <div class="pdf_file">
+                        <img src="./assets/images/icon/folder-add.svg" class="center" />
+                        <span>Select pdf file to Upload <br> or drag and drop it here</span>
+                    </div>
+                </div>
+
+                    <div class="auth_actions">
+                        <div>
+                            <button type="button" class="btn btn-prev" [routerLink]="'/auth/signup'"><span> Previous</span></button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-login"><span> Sign up</span></button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+
+    </div>
+ 
+</div>
+<app-alert></app-alert>

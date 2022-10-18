@@ -1,0 +1,133 @@
+nav ul{
+    display: flex;
+}
+.nav-items li{
+    list-style: none;
+}
+.logo {
+    cursor: pointer;
+}
+
+nav ul li a{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #252849;
+    text-decoration: none;;
+}
+
+hr {
+    border: 1px solid #E7E7EB;
+    height: 32px;
+    margin: 0px;
+}
+.px-2 {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
+
+
+
+
+.primary-navigation{
+    display: flex;
+    align-items: center;
+}
+.nav-list{
+    height: 20px;
+}
+.nav-list li {
+    cursor: pointer;
+}
+.user-icon{
+    cursor: pointer;
+}
+.user-info {
+    margin-left: auto;
+}
+.user-info li {
+    position: relative;
+  }
+  
+  .user-info ul {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+  .user-info li:hover > ul {
+    display: block;
+  }
+  .user-information {
+      width: 288px;
+      height: 264px;
+      background: #FFFFFF;
+  }
+  .user-information  img{
+    float: left;   
+  }
+  .user-information li {
+      padding: 31px 0px 0px 26px;
+  }
+  .user-information span {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: #252849;
+  }
+  .user-information li a {
+   padding-left: 18px;
+   cursor: pointer;
+}
+@media only screen and (max-width: 400px) {
+    /* For mobile phones: */
+    .primary-header{
+        height: 64px;
+    }
+    .logo {
+        height: 32px;
+        width: 156px;
+    }
+    .nav-list{
+        visibility: hidden;
+    }
+    .primary-navigation {
+        flex-direction: column;
+        align-items: baseline;
+      }
+}
+
+@media (max-width: 480px) {
+    .primary-header{
+        height:64px;
+    }
+    .logo {
+        height: 32px;
+        width:156px ;
+    }
+}
+
+@media (min-width:1200px) {
+    .primary-header{
+        height: 80px;
+    }
+    .logo {
+        height: 40px;
+        width: 197px;
+    }
+    .primary-navigation ul:first-of-type{
+        margin-left: 80px;
+        padding-left: 0px;
+       
+    }
+    .primary-navigation ul{
+        margin-bottom: 0px;
+    }
+    .primary-navigation  ul:first-of-type li {
+        margin-right: 40px;
+    }
+    .primary-navigation  ul:last-of-type li {
+        margin-right: 24px;
+    }
+
+}

@@ -1,0 +1,68 @@
+
+<header class="primary-header">
+    <div class="container">
+        <nav class="primary-navigation">
+            <a class="logo">
+                <img [routerLink]="'/'" src="./assets/images/logo/header_logo.svg" alt="WeCruitment" />
+            </a>
+            <ul role="list" class="nav-list">
+                <li >
+                    <a [routerLink]="">About</a>
+                </li>
+                <li >
+                    <a [routerLink]="">FAQ</a>
+                </li>
+                <li >
+                    <a [routerLink]="">Blog</a>
+                </li>
+            </ul>
+
+            <ul class="user-info" *ngIf='this.auth.isUserAuthenticated()'>
+                <li>
+                    <a class="user-icon">
+                        <img src="./assets/images/icon/user-back.svg" />
+                    </a>
+                    <ul>
+                        <div class="user-information">
+                            <li>
+                                <img src="./assets/images/icon/crown.svg" />
+                                <a [routerLink]=""><span>Profile overview</span> </a>
+                            </li>
+                            <li>
+                                <img src="./assets/images/icon/crown.svg" />
+                                <a [routerLink]=""><span>My CV</span> </a>
+                            </li>
+                            <li>
+                                <img src="./assets/images/icon/crown.svg" />
+                                <a [routerLink]=""><span> Search for me</span> </a>
+                            </li>
+                            <li (click)="logout()">
+                                <img src="./assets/images/icon/crown.svg" />
+                                <a [routerLink]=""> <span> Log out</span></a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+
+          
+            <ul role="list" class="nav-list"  *ngIf='!this.auth.isUserAuthenticated()'>
+                <li >
+                    <a [routerLink]="">Upload CV</a>
+                </li>
+                <li>
+                    <hr>
+                </li>
+                <!-- <div class="hr"></div> -->
+                <li >
+                    <a [routerLink]="">Sign up as a company</a>
+                </li>
+                <li >
+                    <a [routerLink]="'/auth/signup'">Sign up as a Freelancer</a>
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+

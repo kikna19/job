@@ -1,0 +1,1537 @@
+<ul
+  class="
+  mt-20
+  ml-auto
+  mr-auto
+  nav
+  nav-tabs
+  flex
+  flex-row
+  p-1
+  items-center
+  justify-content-between
+  bg-[#F2F2F8]
+  border-0
+  w-[684px]
+  rounded
+  h-12"
+  id="tabs-tabFill"
+  role="tablist">
+  <li
+    class="
+    p-0
+    nav-item
+    font-bold
+    text-[14px]
+    text-center"
+    role="presentation">
+    <button
+      href="#tabs-info"
+      class="
+      text-black
+      border-0
+      rounded
+      h-full
+      w-full
+      nav-link
+      no-underline
+      flex
+      active
+      items-center"
+      id="tabs-home-info"
+      data-bs-toggle="pill"
+      data-bs-target="#tabs-info"
+      role="tab"
+      aria-controls="tabs-info"
+      aria-selected="true">
+      Personal information
+      <span></span>
+    </button>
+  </li>
+  <li
+    class="
+    p-0
+    nav-item
+    font-bold
+    text-[14px]
+    text-center"
+    role="presentation">
+    <button
+      #work
+      [style]="firstForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      [disabled]="firstForm.invalid"
+      href="#tabs-experience"
+      class="
+      text-decoration-none
+      border-0
+      rounded
+      h-full
+      w-full
+      nav-link
+      no-underline
+      flex
+      items-center"
+      id="tabs-experience-tab"
+      data-bs-target="#tabs-experience"
+      data-bs-toggle="pill"
+      aria-controls="tabs-experience"
+      aria-selected="false"
+      role="tab">
+      Work experience
+      <span></span>
+    </button>
+  </li>
+  <li
+    class="
+    p-0
+    nav-item
+    font-bold
+    text-[14px]
+    text-center"
+    role="presentation">
+    <button
+      [disabled]="secondForm.invalid"
+      #situation
+      [style]="secondForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      href="#tabs-situation"
+      class="
+      border-0
+      rounded
+      h-full
+      w-full
+      nav-link
+      no-underline
+      flex
+      items-center"
+      id="tabs-situation-tab"
+      data-bs-target="#tabs-situation"
+      data-bs-toggle="pill"
+      aria-selected="false"
+      aria-controls="tabs-situation"
+      role="tab">
+      Current situation
+      <span></span>
+    </button>
+  </li>
+  <li
+    class="
+    p-0
+    nav-item
+    font-bold
+    text-[14px]
+    text-center"
+    role="presentation">
+    <button
+
+      #cv
+      [style]="thirdForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      href="#tabs-cv"
+      class="
+      border-0
+      rounded
+      h-full
+      w-full
+      nav-link
+      no-underline
+      flex
+      items-center"
+      id="tabs-cv-tab"
+      data-bs-target="#tabs-cv"
+      data-bs-toggle="pill"
+      role="tab"
+      aria-controls="tabs-cv"
+      aria-selected="false">
+      CV
+      <span></span>
+    </button>
+  </li>
+  <li
+    class="
+    p-0
+    nav-item
+    font-bold
+    text-[14px]
+    text-center"
+    role="presentatione">
+    <button
+      [style]="thirdForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      href="#tabs-cv"
+      class="
+       border-0
+       rounded
+       h-full
+       w-full
+       nav-link
+       no-underline
+       flex
+       items-center"
+      id="tabs-e-cv-tab"
+      data-bs-target="#tabs-e-cv"
+      data-bs-toggle="pill"
+      role="tab"
+      aria-controls="tabs-cv"
+      aria-selected="false">
+      E-CV
+      <span></span>
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content mt-10" id="tabs-tabContent3">
+  <!-- First Tab -->
+  <div class="tab-pane fade show active" id="tabs-info" role="tabpanel" aria-labelledby="tabs-info-tab">
+    <div
+      class="
+      main
+      rounded
+      flex
+      flex-col
+      border
+      border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+      <h3 class="font-[700] text-[20px]">Personal Information</h3>
+      <form [formGroup]="firstForm">
+        <div class="flex flex-col mt-8">
+          <label for="firstName">First name</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(firstForm,'firstName') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="firstName"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-[48px]
+              bg-[#F8F8FA]
+              pl-[16px]"
+              value="Tbilisi"
+              id="firstName"/>
+            <button
+              [style]="get(firstForm,'firstName') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-[48px]
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'firstName')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="surName">Surname</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(firstForm,'surName') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="surName"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+              value="Shvangirazde"
+              id="surName"/>
+            <button
+              [style]="get(firstForm,'surName') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-12
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'surName')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="phone">Phone</label>
+          <div class="relative flex align-start mt-1">
+            <img
+              class="absolute ml-4 top-3 w-[24px] h-[24px]"
+              src="../../../../assets/images/icon/icons8-netherlands1.png"/>
+            <span class="absolute ml-[56px] top-3">+3</span>
+            <input
+              [style]="get(firstForm,'phone') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="phone"
+              placeholder="97 010 1536"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-[48px]
+              bg-[#F8F8FA]
+              pl-[84px]"
+              id="phone"/>
+            <button
+              [style]="get(firstForm,'phone') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-[48px]
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'phone')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="password">Password</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(firstForm,'password') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="password"
+              placeholder="Password"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+              id="password"/>
+            <button
+              [style]="get(firstForm,'password') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-12
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Change
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'password')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="email">Email</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(firstForm,'email') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="email"
+              placeholder="Mamuka.bolkvadze"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+              id="email"/>
+            <button
+              [style]="get(firstForm,'email') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-12
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Change
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'email')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="email">City</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(firstForm,'city') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="city"
+              placeholder="City"
+              class="
+              border-t
+              border-l
+              border-b
+              border-600
+              rounded-tl-md
+              rounded-bl-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+              id="city"/>
+            <button
+              [style]="get(firstForm,'city') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+              pr-[15px]
+              bg-[#F8F8FA]
+              h-12
+              rounded-tr-md
+              rounded-br-md
+              border-t
+              border-r
+              border-b
+              border-600">
+              Change
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(firstForm, 'city')">
+            Required
+          </span>
+        </div>
+      </form>
+      <div
+        class="
+        mt-6
+        w-full
+        flex
+        justify-content-end
+        items-end">
+        <button
+          (click)="work.click()"
+          [disabled]="firstForm.invalid"
+          [style]="firstForm.invalid ?
+           {'background': '#97BEFF'} :
+           {'background': '#005AFF'}"
+          class="
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Second Tab -->
+  <div class="tab-pane fade" id="tabs-experience" role="tabpanel" aria-labelledby="tabs-experience-tab">
+    <div
+      class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+      <h3 class="font-[700] text-[20px]">Work Experience</h3>
+
+      <form [formGroup]="secondForm">
+        <div class="flex flex-col mt-8">
+          <label for="occupation">Occupation</label>
+          <div class="flex align-start mt-1">
+            <input
+              formControlName="occupation"
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            bg-[#F8F8FA]
+            pl-[16px]"
+              value="Ui/Ux Designer"
+              id="occupation"/>
+            <button
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(secondForm, 'occupation')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="stack">Stack</label>
+          <div class="flex align-start mt-1 relative">
+            <button
+              class="
+            text-[14px]
+            absolute
+            bg-[#F0F0F4]
+            pt-1
+            pl-[6px]
+            pb-1
+            pr-[6px]
+            mt-[10px]
+            ml-4
+            rounded">
+              JAVA
+            </button>
+            <button
+              class="
+            text-[14px]
+            absolute
+            bg-[#F0F0F4]
+            pt-1
+            pl-[6px]
+            pb-1
+            pr-[6px]
+            mt-[10px]
+            ml-[70px]
+            rounded">
+              Phyton
+            </button>
+            <button
+              class="
+            text-[14px]
+            absolute
+            bg-[#F0F0F4]
+            pt-1
+            pl-[6px]
+            pb-1
+            pr-[6px]
+            mt-[10px]
+            ml-[138px]
+            rounded">
+              NODE
+            </button>
+            <button
+              class="
+            text-[14px]
+            absolute
+            bg-[#F0F0F4]
+            pt-1
+            pl-[6px]
+            pb-1
+            pr-[6px]
+            mt-[10px]
+            ml-[199px]
+            rounded">
+              Smthng
+            </button>
+            <button
+              class="
+            text-[14px]
+            absolute
+            bg-[#F0F0F4]
+            pt-1
+            pl-[6px]
+            pb-1
+            pr-[6px]
+            mt-[10px]
+            ml-[268px]
+            rounded">
+              C++
+            </button>
+            <input
+              formControlName="stack"
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-12
+            bg-[#F8F8FA]
+            pl-4"
+              id="stack"/>
+            <button
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-12
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+          text-[#858799]
+          text-[14px]
+          font-400
+          mt-1
+          italic">
+          Choose from 1 to 3 tags
+        </span>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(secondForm, 'stack')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="experience">Years of experience </label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              formControlName="experience"
+              placeholder=""
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+              id="experience"
+              value="3"/>
+            <button
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(secondForm, 'experience')">
+            Required
+          </span>
+        </div>
+      </form>
+      <div
+        class="
+        mt-6
+        w-full
+        flex
+        justify-content-end
+        items-end">
+        <button
+          (click)="situation.click()"
+          [disabled]="secondForm.invalid"
+          [style]="secondForm.invalid ?
+           {'background': '#97BEFF'} :
+           {'background': '#005AFF'}"
+          class="
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Third Tab -->
+  <div class="tab-pane fade" id="tabs-situation" role="tabpanel" aria-labelledby="tabs-situation-tab">
+    <div
+      class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+      <h3 class="font-[700] text-[20px]">Current situation</h3>
+
+      <form [formGroup]="thirdForm">
+        <div class="flex flex-col mt-8">
+          <h6>Are you hired now?</h6>
+          <div class="flex mt-2">
+            <div class="flex items-center mr-4">
+           <span
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+             (click)="checkHiredOne()"
+             [style]="hiredOne ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="hiredOne"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="hiredOne"
+               hidden
+               id="hired-1">
+           </span>
+              <label
+                for="hired-1"
+                class="
+              font-400
+              ml-[18px]
+              text-4">
+                Yes, I am
+              </label>
+            </div>
+            <div class="flex items-center mr-4">
+           <span
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+             (click)="checkHiredTwo()"
+             [style]="hiredTwo ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="hiredTwo"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="hiredTwo"
+               hidden
+               type="checkbox"
+               id="hired-2"
+               value="Not now">
+           </span>
+              <label
+                for="hired-2"
+                class="
+              font-400
+              ml-[18px]
+              text-4">
+                Not now
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col mt-6" [style]="hiredTwo ? {'color': '#858799'} : {'color': 'black'}">
+          <label for="company">Company</label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              formControlName="company"
+              placeholder=""
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+              id="company"
+              value="Tesla"/>
+            <button
+              [disabled]="hiredTwo"
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(thirdForm, 'company')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6" [style]="hiredTwo ? {'color': '#858799'} : {'color': 'black'}">
+          <label for="salary">Monthly salary</label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              formControlName="salary"
+              placeholder=""
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+              id="salary"
+              value="4000 €"/>
+            <button
+              [disabled]="hiredTwo"
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(thirdForm, 'salary')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <h6>Do you have bonus?</h6>
+          <div class="flex mt-2">
+            <div class="flex items-center mr-4">
+           <span
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+             (click)="checkBonusOne()"
+             [style]="bonusOne ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="bonusOne"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="bonusOne"
+               hidden
+               id="bonus-1"
+               value="Yes">
+           </span>
+              <label
+                for="bonus-1"
+                class="
+              font-400
+              ml-[18px]
+              text-4">
+                Yes, I am
+              </label>
+            </div>
+            <div class="flex items-center mr-4">
+            <span
+              class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+              (click)="checkBonusTwo()"
+              [style]="bonusTwo ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="bonusTwo"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="bonusTwo"
+               hidden
+               id="bonus-2"
+               value="No">
+           </span>
+              <label
+                for="bonus-2"
+                class="
+              font-400
+              ml-[18px]
+              text-4">
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col mt-6" [style]="bonusTwo ? {'color': '#858799'} : {'color': 'black'}">
+          <label for="bonus">Bonus</label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              formControlName="bonus"
+              placeholder=""
+              class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+              id="bonus"
+              value="1200 €"/>
+            <button
+              [disabled]="bonusTwo"
+              class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+              Edit
+            </button>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(thirdForm, 'bonus')">
+            Required
+          </span>
+        </div>
+      </form>
+      <div
+        class="
+        mt-6
+        w-full
+        flex
+        justify-content-end
+        items-end">
+        <button
+          (click)="cv.click()"
+          [disabled]="thirdForm.invalid"
+          [style]="thirdForm.invalid ?
+           {'background': '#97BEFF'} :
+           {'background': '#005AFF'}"
+          class="
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Fourth Tab -->
+  <div class="tab-pane fade" id="tabs-cv" role="tabpanel" aria-labelledby="tabs-cv-tab">
+    <div
+      class="
+      main
+      rounded
+      flex
+      flex-col
+      border
+      border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+      <h3 class="font-[700] text-[20px]">CV</h3>
+      <div class="flex flex-col mt-6">
+        <div class="flex justify-content-between">
+          <h6 class="text-4">Cv</h6>
+          <h6 class="text-4">Change</h6>
+        </div>
+        <form [formGroup]="fourthForm">
+          <div
+            class="
+            flex
+            flex-col
+            justify-content-between
+            items-center
+            pt-[82px]
+            mt-2
+            rounded
+            border
+            border-[#E7E7EB]
+            h-[205px]">
+            <label for="file">
+              <img class="w-10 h-10 cursor-pointer" src="./assets/images/icon/gallery-favorite.png">
+            </label>
+            <input
+              formControlName="cv"
+              (input)="onChange()"
+              accept="application/pdf"
+              #file id="file"
+              type="file"
+              hidden>
+            <div
+              *ngIf="file.value"
+              class="
+              border-none
+              bg-[#F8F8FA]
+              flex
+              justify-content-between
+              w-full
+              p-[18px]">
+              <div class="flex flex-row">
+                <img src="./assets/images/icon/folder-2.png">
+                <span class="pl-[18px]">{{file.value}}</span>
+              </div>
+              <img src="./assets/images/icon/document-download.png" class="cursor-pointer">
+            </div>
+          </div>
+        </form>
+        <div
+          class="
+        mt-6
+        w-full
+        flex
+        justify-content-end
+        items-end">
+          <button
+            [disabled]="fourthForm.invalid"
+            [style]="thirdForm.invalid ?
+           {'background': '#97BEFF'} :
+           {'background': '#005AFF'}"
+            class="
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+            Finish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fifth Tab -->
+  <div class="tab-pane fade" id="tabs-e-cv" role="tabpanel" aria-labelledby="tabs-e-cv-tab">
+    <div
+      class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+      <h3 class="font-[700] text-[20px]">Current situation</h3>
+      <form [formGroup]="fifthForm">
+        <div class="flex flex-col mt-8">
+          <label for="intro">Brief intro</label>
+          <div class="
+          flex
+          align-start
+          mt-1">
+          <textarea
+            [style]="get(fifthForm,'intro') ? {'border-color': 'red'} : {'border': ''}"
+            formControlName="intro"
+            placeholder="Tell us more about yourself"
+            class="
+            border-t
+            border-l
+            border-b
+            border-r
+            border-600
+            rounded-md
+            w-full
+            h-[96px]
+            pl-4
+            pt-[13px]
+            bg-[#F8F8FA]"
+            id="intro"></textarea>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(fifthForm, 'intro')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="language">Language</label>
+          <div class="flex align-start mt-1">
+            <input
+              [style]="get(fifthForm,'language') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="language"
+              placeholder="Select language"
+              class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+              id="language"/>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(fifthForm, 'language')">
+            Required
+          </span>
+        </div>
+      </form>
+
+      <form *ngFor="let i of educations(); index as index" [formGroup]="i">
+        <div class="flex flex-col mt-6">
+          <label for="school">School</label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              [style]="get(i,'school') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="school"
+              placeholder="Ex: Boston university"
+              class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-[48px]
+              pl-4
+              bg-[#F8F8FA]"
+              id="school"/>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(i, 'school')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="study">Field of study</label>
+          <div
+            class="flex align-start mt-1">
+            <input
+              [style]="get(i,'study') ? {'border-color': 'red'} : {'border': ''}"
+              formControlName="study"
+              placeholder="Ex: Business"
+              class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-[48px]
+              pl-4
+              bg-[#F8F8FA]"
+              id="study"/>
+          </div>
+          <span
+            class="
+            mt-2
+            text-red-500"
+            *ngIf="get(i, 'study')">
+            Required
+          </span>
+        </div>
+        <div class="flex flex-col mt-6">
+          <label for="study">Start date</label>
+          <div class="flex align-start mt-1">
+            <div class="short-div flex align-start mt-1">
+              <div class="flex align-start flex-col">
+                <input
+                  [style]="get(i,'startMonth') ? {'border-color': 'red'} : {'border': ''}"
+                  formControlName="startMonth"
+                  type="number"
+                  placeholder="Month"
+                  class="
+                  short
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+                  id="startMonth"/>
+                <span
+                  class="
+                  mt-2
+                  text-red-500"
+                  *ngIf="get(i, 'startMonth')">
+                Required
+              </span>
+              </div>
+              <div class="flex align-start flex-col">
+                <input
+                  [style]="get(i,'startYear') ? {'border-color': 'red'} : {'border': ''}"
+                  formControlName="startYear"
+                  type="number"
+                  placeholder="Year"
+                  class="
+                  short
+                  ml-[33px]
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+                  id="startYear"/>
+                <span
+                  class="
+                  ml-[33px]
+                  mt-2
+                  text-red-500"
+                  *ngIf="get(i, 'startYear')">
+                Required
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col mt-6">
+          <h6>End date</h6>
+          <div class="flex mt-2">
+            <div class="flex items-center mr-4">
+           <span
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+             (click)="checkEndDateOne()"
+             [style]="i.get('endOne')?.value === 'Finished' ?
+             {'background': '#252849', 'border-color': '#252849'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="i.get('endOne')?.value === 'Finished'"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               hidden
+               id="endNow">
+           </span>
+              <label
+                for="endNow"
+                class="
+                font-400
+                ml-[18px]
+                text-4">
+                Finished
+              </label>
+            </div>
+            <div class="flex items-center mr-4">
+           <span
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]"
+             (click)="checkEndDateTwo()"
+             [style]="i.get('endTwo')?.value === 'Not yet' ?
+             {'background': '#252849', 'border-color': '#252849'} :
+             {'background': '#F0F0F4'}">
+            <span
+              *ngIf="i.get('endTwo')?.value === 'Not yet'"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               hidden
+               type="checkbox"
+               id="notNow">
+           </span>
+              <label
+                for="notNow"
+                class="
+              font-400
+              ml-[18px]
+              text-4">
+                Not yet
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="flex flex-col mt-3" [style]="endDateTwo ? {'color': '#858799'} : {'color': 'black'}">
+          <div class="flex align-start mt-1">
+            <div class="short-div flex align-start mt-1">
+              <div class="flex align-start flex-col">
+                <input
+                  [style]="get(i,'endMonth') ? {'border-color': 'red'} : {'border': ''}"
+                  formControlName="endMonth"
+                  type="number"
+                  placeholder="Month"
+                  class="
+                  short
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+                  id="endMonth"/>
+                <span
+                  class="
+                  mt-2
+                  text-red-500"
+                  *ngIf="get(i, 'endMonth')">
+                Required
+              </span>
+              </div>
+              <div class="flex align-start flex-col">
+                <input
+                  [style]="get(i,'endYear') ? {'border-color': 'red'} : {'border': ''}"
+                  formControlName="endYear"
+                  type="number"
+                  placeholder="Year"
+                  class="
+                  short
+                  ml-[33px]
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+                  id="endYear"/>
+                <span
+                  class="
+                   ml-[33px]
+                   mt-2
+                   text-red-500"
+                  *ngIf="get(i, 'endYear')">
+                Required
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span *ngIf="educationArray.length > 1" class="w-full h-[2px] mt-4 bg-[#E5E7EB] block"></span>
+<!--        <span *ngIf="educationArray.length > 1" class="mt-2">Education {{index + 1}}</span>-->
+      </form>
+      <div class="flex flex-row items-start mt-6">
+        <button
+          (click)="addMoreEducation()"
+          class="
+          font-semibold
+          text-[14px]
+          text-[#252849]">
+          + Add another education
+        </button>
+        <button
+          *ngIf="educationArray.length > 1"
+          (click)="educationArray.removeAt(educationArray.length)"
+          class="
+          ml-4
+          font-semibold
+          text-[14px]
+          text-red-600">
+          Cancel
+        </button>
+      </div>
+      <div
+        class="
+        mt-6
+        w-full
+        flex
+        justify-content-end
+        items-end">
+        <button
+          (click)="log()"
+          [disabled]="fifthForm.invalid"
+          [style]="fifthForm.invalid ?
+           {'background': '#97BEFF'} :
+           {'background': '#005AFF'}"
+          class="
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

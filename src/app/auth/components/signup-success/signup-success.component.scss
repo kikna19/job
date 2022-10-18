@@ -1,0 +1,56 @@
+.auth_header {
+    background-color: #FFFFFF;
+    height: 80px;
+    cursor: pointer;
+}
+.wrapper{
+    background-color: #FDFDFD;
+    height: calc(100vh - 80px);
+}
+.container {
+    max-width: 392px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+.btn-search {
+    height: 48px;
+    background: #0A0E33;
+    border-radius: 4px;
+}
+.btn-search span {
+    height: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #F0F0F4;
+}
+.title, .info{
+    text-align: center;
+}
+.title span{
+    height: 24px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #252849;
+}
+.info span {
+    height: 52px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: #252849;
+}
+.search {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }

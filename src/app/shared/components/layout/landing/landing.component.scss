@@ -1,0 +1,238 @@
+.wrapper_main {
+    background: #E7E7EB;
+    margin-bottom: 50px;
+}
+
+.annoucment {
+    width: 770px;
+    height: 264px; 
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 88px;
+    display:inline-block;
+    color: #0A0E33;
+}
+.info{
+    background-color: #FFFFFF;
+}
+.Accent{
+    color: #0E68F1;
+}
+.black{
+    color: #0A0E33;
+}
+hr {
+    border: 3px solid #0E68F1;
+    transform: rotate(1.01deg);
+}
+.flex-container {
+    display: flex;
+    border-radius: 4px;
+}
+.flex-container div {
+    flex: 1;  
+}
+.btn-search{
+    display: block;
+    width: 100%;
+    background: #0E68F1;
+    border-radius: 4px;
+    color:#FFFFFF;
+}
+.form-select,.btn-search, .form-group input{
+    border: none !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+}
+// .vacancies_header{
+//     margin-top: 128px;
+//     margin-bottom: 40px;
+// }
+.blog_img img{
+    height: 224px;
+}
+.vacancies_header, .blog_header {
+    height: 30px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #252849;
+    margin-top: 128px;
+    margin-bottom: 40px;
+}
+.vacancies-container{
+    display: flex;
+}
+.vacancies-container .vacancie_card{
+    flex: 1; 
+  //  max-width: 272px; 
+    height:272px;
+    background: #F2F2F8;
+    border: 1px solid #E7E7EB;
+    border-radius: 4px; 
+    margin-right: 12px !important;
+    margin-left: 12px !important;     
+}
+.vacancie_card div{   
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;    
+    color: #545670;
+    text-align: start;
+    padding-right: 16px;
+   // padding:5px 20px 5px 20px;
+}
+.vacancie_title{
+    padding-top: 32px;
+    padding-left: 32px;
+}
+.vacancie_title span, .blog_title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #252849;
+}
+.vacancie_more{
+    text-align: end !important;
+}
+.blogs-container{
+    display: flex;
+}
+.blogs-container .blog_card{
+    flex: 1; 
+    width: 392px;  
+    height: 468px;
+    background: #FFFFFF;
+    border-radius: 8px;   
+    margin-right: 10px !important;
+    margin-left: 10px !important;  
+    border: 1px solid #F2F2F8;  
+    border-radius: 4px;
+}
+
+.blog_img img {
+    border-radius: 4px 4px 0px 0px;
+}
+
+.blog_card div{   
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;    
+    color: #545670;
+    text-align: start;
+  
+ }
+
+ .vacancie_more{
+    cursor: pointer;
+ }
+ .vacancie_city span,
+ .vacancie_rate span,
+ .vacancie_occupation span {
+     font-weight: 400;
+     font-size: 16px;
+     color: #545670;
+     font-style: normal;
+     line-height: 22px;
+     padding-left: 12px
+ }
+ .vacancie_city img,.vacancie_rate img,.vacancie_occupation img{
+   float: left;
+   padding-left: 32px
+ }
+ .vacancie_city ,.vacancie_rate ,.vacancie_occupation {
+       padding-top: 10px
+  }
+  .vacancie_more{
+    padding-top: 32px;
+    display: flex;
+    float: right;
+  }
+  .vacancie_more span {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: #0E68F1;
+  }
+  .vacancie_more img {
+    padding-left: 5px
+}
+ .title_hr {
+    // width: 328px;
+     height: 0px;
+     border: 1px solid #E7E7EB;
+     margin-top: 16px;
+ }
+ .blog_title{
+    margin-top: 32px;
+    margin-left: 32px;
+ }
+ .blog_category,.blog_excerpt{
+    margin-left: 32px;
+    padding-top: 16px;
+ }
+ .blog_title span {
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 24px;
+     color: #252849;
+ }
+ .blog_category span {
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 22px;
+     color: #858799;
+ }
+ .blog_excerpt span {
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 26px;
+     color: #545670;
+ }
+
+ //
+ .search_div{
+    height: 544px;
+    background: #BEDBFF;
+}
+.annoucment {
+    float: left;
+}
+
+.flex-container {
+    clear: left;
+    float: left;
+    background: #FFFFFF;
+    height: 72px;
+    align-items: center;
+}
+.finance{
+    overflow: hidden;
+}
+.search{
+   height: 56px;
+   padding-right: 8px;
+}
+.btn-search{
+    height: 100%;
+}
+
+.city{
+   color: #858799;
+}
+ @media (max-width: 480px) {}
+
+ @media (max-width: 1400px) and (min-width:1200px) {
+    .search_div{
+        height: 544px;
+        background: #BEDBFF;
+      
+    }
+    .annoucment{
+        margin-top: 95px;
+    }
+ }

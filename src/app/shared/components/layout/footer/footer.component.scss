@@ -1,0 +1,79 @@
+.logo{
+    cursor: pointer;
+}
+.primary-footer{
+    background: #F2F2F8;
+}
+.primary-navigation{
+    margin-top: 40px;
+}
+
+
+
+nav > ul > li a { 
+    font-size: 16px;
+    color: #252849;
+}
+nav > ul > li.title {
+    font-weight: 700;
+    line-height: 26px;
+}
+
+nav > ul > li {
+    font-weight: 400; 
+    line-height: 22px;
+}
+.title{
+    padding-bottom: 16px;
+}
+.footer_hr{
+    margin-bottom: 17px;
+}
+.nav-list-contact img,.nav-list-socials img{
+    display: inline;
+    width: 20px;
+    margin-right: 5px;
+}
+
+nav .nav-list-socials> li:not(:first-child) {
+   display: inline;
+}
+.nav-list-contact li,
+.nav-list-company li,
+.nav-list-socials li{
+    margin-top: 16px;
+}
+.footer_hr{
+    border: 1px solid #F2F2F8;
+}
+
+
+//Mobile (Smartphone) max-width: 480px.
+@media (max-width: 480px) {
+    .primary-footer{
+        height: 617px;
+    }
+    .primary-navigation{
+        display: block;
+    }
+    .primary-navigation ul{
+        margin-top: 41px;
+    }
+}
+@media (max-width: 1200px) and  (min-width: 480px) {
+    .primary-navigation{
+        display: flex;
+    }
+    .primary-navigation ul{
+        margin-left: 50px;
+    }
+}
+//desktops.
+@media (min-width:1200px) { 
+    .primary-navigation{
+        display: flex;
+    }
+    .primary-navigation ul{
+        margin-left: 115px;
+    }
+}
