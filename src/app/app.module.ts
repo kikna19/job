@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/layout/header/header.component';
 import { FooterComponent } from './shared/components/layout/footer/footer.component';
 import { LandingComponent } from './shared/components/layout/landing/landing.component';
-import { LayoutComponent } from '../app/shared/components/layout/layout.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { SingupInfoComponent } from './auth/components/singup-info/singup-info.component';

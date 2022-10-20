@@ -1,0 +1,61 @@
+<div
+  class="
+      main
+      rounded
+      flex
+      flex-col
+      border
+      border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+  <h3 class="font-[700] text-[20px]">CV</h3>
+  <div class="flex flex-col mt-6">
+    <div class="flex justify-content-between">
+      <h6 class="text-4">Cv</h6>
+      <h6 class="text-4">Change</h6>
+    </div>
+    <form [formGroup]="form">
+      <div
+        class="
+            flex
+            flex-col
+            justify-content-between
+            items-center
+            pt-[82px]
+            mt-2
+            rounded
+            border
+            border-[#E7E7EB]
+            h-[205px]">
+        <label for="file">
+          <img class="w-10 h-10 cursor-pointer" src="./assets/images/icon/gallery-favorite.png" alt="cv">
+        </label>
+        <input
+          #file
+          (input)="onChange()"
+          accept="application/pdf"
+          formControlName="cv" hidden
+          id="file"
+          type="file">
+        <div
+          *ngIf="file.value"
+          class="
+              border-none
+              bg-[#F8F8FA]
+              flex
+              justify-content-between
+              w-full
+              p-[18px]">
+          <div class="flex flex-row">
+            <img src="./assets/images/icon/folder-2.png">
+            <span class="pl-[18px]">{{file.value}}</span>
+          </div>
+          <img class="cursor-pointer" src="./assets/images/icon/document-download.png">
+        </div>
+      </div>
+    </form>
+    <ng-content></ng-content>
+  </div>
+</div>

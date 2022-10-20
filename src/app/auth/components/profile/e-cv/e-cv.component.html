@@ -1,0 +1,367 @@
+<div
+  class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+  <h3 class="font-[700] text-[20px]">Current situation</h3>
+  <form [formGroup]="form">
+    <div class="flex flex-col mt-8">
+      <label for="intro">Brief intro</label>
+      <div class="
+          flex
+          align-start
+          mt-1">
+          <textarea
+            [style]="get(form,'intro') ? {'border-color': 'red'} : {'border': ''}"
+            class="
+            border-t
+            border-l
+            border-b
+            border-r
+            border-600
+            rounded-md
+            w-full
+            h-[96px]
+            pl-4
+            pt-[13px]
+            bg-[#F8F8FA]"
+            formControlName="intro"
+            id="intro"
+            placeholder="Tell us more about yourself"></textarea>
+      </div>
+      <span
+        *ngIf="get(form, 'intro')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="language">Language</label>
+      <div class="flex align-start mt-1">
+        <input
+          [style]="get(form,'language') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-12
+              bg-[#F8F8FA]
+              pl-4"
+          formControlName="language"
+          id="language"
+          placeholder="Select language"/>
+      </div>
+      <span
+        *ngIf="get(form, 'language')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+  </form>
+
+  <form *ngFor="let i of educations(); index as index" [formGroup]="i">
+    <span *ngIf="educationArray.length > 1 && index !== 0 " class="w-full h-[2px] mt-4 bg-[#DEE2E6] block"></span>
+    <div class="flex flex-col mt-6">
+      <label for="school">School</label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          [style]="get(i,'school') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-[48px]
+              pl-4
+              bg-[#F8F8FA]"
+          formControlName="school"
+          id="school"
+          placeholder="Ex: Boston university"/>
+      </div>
+      <span
+        *ngIf="get(i, 'school')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="study">Field of study</label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          [style]="get(i,'study') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+              border-t
+              border-l
+              border-b
+              border-r
+              border-600
+              rounded-md
+              w-full
+              h-[48px]
+              pl-4
+              bg-[#F8F8FA]"
+          formControlName="study"
+          id="study"
+          placeholder="Ex: Business"/>
+      </div>
+      <span
+        *ngIf="get(i, 'study')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="study">Start date</label>
+      <div class="flex align-start mt-1">
+        <div class="short-div flex align-start mt-1">
+          <div class="flex align-start flex-col">
+            <input
+              [style]="get(i,'startMonth') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+                  short
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+              formControlName="startMonth"
+              id="startMonth"
+              placeholder="Month"
+              type="number"/>
+            <span
+              *ngIf="get(i, 'startMonth')"
+              class="
+                  mt-2
+                  text-red-500">
+                Required
+              </span>
+          </div>
+          <div class="flex align-start flex-col">
+            <input
+              [style]="get(i,'startYear') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+                  short
+                  ml-[33px]
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+              formControlName="startYear"
+              id="startYear"
+              placeholder="Year"
+              type="number"/>
+            <span
+              *ngIf="get(i, 'startYear')"
+              class="
+                  ml-[33px]
+                  mt-2
+                  text-red-500">
+                Required
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col mt-6">
+      <h6>End date</h6>
+      <div class="flex mt-2">
+        <div class="flex items-center mr-4">
+           <span
+             (click)="checkEndDateOne()"
+             [style]="i.get('endOne')?.value === 'Finished' ?
+             {'background': '#252849', 'border-color': '#252849'} :
+             {'background': '#F0F0F4'}"
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="i.get('endOne')?.value === 'Finished'"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               hidden
+               id="endNow">
+           </span>
+          <label
+            class="
+                font-400
+                ml-[18px]
+                text-4"
+            for="endNow">
+            Finished
+          </label>
+        </div>
+        <div class="flex items-center mr-4">
+           <span
+             (click)="checkEndDateTwo()"
+             [style]="i.get('endTwo')?.value === 'Not yet' ?
+             {'background': '#252849', 'border-color': '#252849'} :
+             {'background': '#F0F0F4'}"
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="i.get('endTwo')?.value === 'Not yet'"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               hidden
+               id="notNow"
+               type="checkbox">
+           </span>
+          <label
+            class="
+              font-400
+              ml-[18px]
+              text-4"
+            for="notNow">
+            Not yet
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col mt-3">
+      <div class="flex align-start mt-1">
+        <div class="short-div flex align-start mt-1">
+          <div class="flex align-start flex-col">
+            <input
+              [style]="get(i,'endMonth') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+                  short
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+              formControlName="endMonth"
+              id="endMonth"
+              placeholder="Month"
+              type="number"/>
+            <span
+              *ngIf="get(i, 'endMonth')"
+              class="
+                  mt-2
+                  text-red-500">
+                Required
+              </span>
+          </div>
+          <div class="flex align-start flex-col">
+            <input
+              [style]="get(i,'endYear') ? {'border-color': 'red'} : {'border': ''}"
+              class="
+                  short
+                  ml-[33px]
+                  border-t
+                  border-l
+                  border-b
+                  border-r
+                  border-600
+                  rounded-md
+                  w-[292px]
+                  h-[48px]
+                  bg-[#F8F8FA]
+                  pr-[23.5px]
+                  pl-[16px]"
+              formControlName="endYear"
+              id="endYear"
+              placeholder="Year"
+              type="number"/>
+            <span
+              *ngIf="get(i, 'endYear')"
+              class="
+                   ml-[33px]
+                   mt-2
+                   text-red-500">
+                Required
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="flex flex-row items-start mt-6">
+    <button
+      (click)="addMoreEducation()"
+      [disabled]="eduForm.invalid"
+      class="
+      disabled:text-gray-500
+      font-semibold
+      text-[14px]
+      text-[#252849]">
+      + Add another education
+    </button>
+    <button
+      (click)="cancelEduForm(educationArray.length-1)"
+      *ngIf="educationArray.length > 1"
+      class="
+      ml-4
+      font-semibold
+      text-[14px]
+      text-red-600">
+      Cancel
+    </button>
+  </div>
+  <ng-content></ng-content>
+</div>

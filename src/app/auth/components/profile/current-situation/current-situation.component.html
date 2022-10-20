@@ -1,0 +1,308 @@
+<div
+  class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+  <h3 class="font-[700] text-[20px]">Current situation</h3>
+
+  <form [formGroup]="form">
+    <div class="flex flex-col mt-8">
+      <h6>Are you hired now?</h6>
+      <div class="flex mt-2">
+        <div class="flex items-center mr-4">
+           <span
+             (click)="checkHiredOne()"
+             [style]="hiredOne ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}"
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="hiredOne"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="hiredOne"
+               hidden
+               id="hired-1">
+           </span>
+          <label
+            class="
+              font-400
+              ml-[18px]
+              text-4"
+            for="hired-1">
+            Yes, I am
+          </label>
+        </div>
+        <div class="flex items-center mr-4">
+           <span
+             (click)="checkHiredTwo()"
+             [style]="hiredTwo ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}"
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="hiredTwo"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="hiredTwo"
+               hidden
+               id="hired-2"
+               type="checkbox"
+               value="Not now">
+           </span>
+          <label
+            class="
+              font-400
+              ml-[18px]
+              text-4"
+            for="hired-2">
+            Not now
+          </label>
+        </div>
+      </div>
+    </div>
+    <div [style]="hiredTwo ? {'color': '#858799'} : {'color': 'black'}" class="flex flex-col mt-6">
+      <label for="company">Company</label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+          formControlName="company"
+          id="company"
+          placeholder=""
+          value="Tesla"/>
+        <button
+          [disabled]="hiredTwo"
+          class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+          Edit
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'company')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div [style]="hiredTwo ? {'color': '#858799'} : {'color': 'black'}" class="flex flex-col mt-6">
+      <label for="salary">Monthly salary</label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+          formControlName="salary"
+          id="salary"
+          placeholder=""
+          value="4000 €"/>
+        <button
+          [disabled]="hiredTwo"
+          class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+          Edit
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'salary')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <h6>Do you have bonus?</h6>
+      <div class="flex mt-2">
+        <div class="flex items-center mr-4">
+           <span
+             (click)="checkBonusOne()"
+             [style]="bonusOne ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}"
+             class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="bonusOne"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="bonusOne"
+               hidden
+               id="bonus-1"
+               value="Yes">
+           </span>
+          <label
+            class="
+              font-400
+              ml-[18px]
+              text-4"
+            for="bonus-1">
+            Yes, I am
+          </label>
+        </div>
+        <div class="flex items-center mr-4">
+            <span
+              (click)="checkBonusTwo()"
+              [style]="bonusTwo ?
+             {'background': '#858799', 'border-color': '#858799'} :
+             {'background': '#F0F0F4'}"
+              class="
+             block
+             text-center
+             cursor-pointer
+             rounded-full
+             w-[20px]
+             h-[20px]
+             border-[#B6B7C2]
+             border-[1.5px]">
+            <span
+              *ngIf="bonusTwo"
+              class="
+              text-white
+              text-[16px]
+              material-symbols-outlined">
+              done
+            </span>
+             <input
+               formControlName="bonusTwo"
+               hidden
+               id="bonus-2"
+               value="No">
+           </span>
+          <label
+            class="
+              font-400
+              ml-[18px]
+              text-4"
+            for="bonus-2">
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+    <div [style]="bonusTwo ? {'color': '#858799'} : {'color': 'black'}" class="flex flex-col mt-6">
+      <label for="bonus">Bonus</label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-[48px]
+            pl-4
+            bg-[#F8F8FA]"
+          formControlName="bonus"
+          id="bonus"
+          placeholder=""
+          value="1200 €"/>
+        <button
+          [disabled]="bonusTwo"
+          class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+          Edit
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'bonus')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+  </form>
+  <ng-content></ng-content>
+</div>

@@ -16,6 +16,12 @@ import {SocialLoginModule} from "@abacritt/angularx-social-login";
 import {AlertModule} from "../alert/alert.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import { PersonalInfoComponent } from './components/profile/personal-info/personal-info.component';
+import { WorkExperieceComponent } from './components/profile/work-experiece/work-experiece.component';
+import { CurrentSituationComponent } from './components/profile/current-situation/current-situation.component';
+import { CvComponent } from './components/profile/cv/cv.component';
+import { ECvComponent } from './components/profile/e-cv/e-cv.component';
+import {CountryAllService} from "../shared/services/country-all.service";
 
 const COMPONENTS = [
   LoginComponent,
@@ -31,6 +37,11 @@ const COMPONENTS = [
 @NgModule({
   declarations: [
   COMPONENTS,
+  PersonalInfoComponent,
+  WorkExperieceComponent,
+  CurrentSituationComponent,
+  CvComponent,
+  ECvComponent,
   ],
   imports: [
     SharedModule,
@@ -43,6 +54,6 @@ const COMPONENTS = [
   exports: [
     COMPONENTS,
   ],
-  providers: [AuthService],
+  providers: [AuthService, CountryAllService],
 })
 export class AuthModule { }

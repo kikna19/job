@@ -1,0 +1,197 @@
+<div
+  class="
+      main
+      rounded
+      flex
+      flex-col
+      border border-600
+      w-[684px]
+      h-auto
+      m-auto
+      p-8">
+  <h3 class="font-[700] text-[20px]">Work Experience</h3>
+  <form [formGroup]="form">
+    <div class="flex flex-col mt-8">
+      <label for="occupation">Occupation</label>
+      <div class="flex align-start mt-1">
+        <input
+          class="
+            border-t
+            border-l
+            border-b
+            border-600
+            rounded-tl-md
+            rounded-bl-md
+            w-full
+            h-12
+            bg-[#F8F8FA]
+            pl-[16px]"
+          formControlName="occupation"
+          id="occupation"
+          value="Ui/Ux Designer"/>
+        <button
+          class="
+            pr-[15px]
+            bg-[#F8F8FA]
+            h-[48px]
+            rounded-tr-md
+            rounded-br-md
+            border-t
+            border-r
+            border-b
+            border-600">
+          Edit
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'occupation')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="stack">Stack</label>
+      <div class="flex align-start h-auto flex-row mt-1 ">
+        <div
+          *ngIf="btnStacks.length >= 1"
+          class="
+           max-w-[400px]
+           bg-[#F8F8FA]
+           rounded-tl-md
+           rounded-bl-md
+           h-auto
+           border-100
+           border-l
+           border-t
+           border-b">
+          <button
+            *ngFor="let btn of btnStacks; index as i"
+            class="
+            relative
+            capitalize
+            ml-4
+            mt-2
+            mb-2
+            text-[14px]
+            bg-[#F0F0F4]
+            pl-1
+            pr-4
+            pt-1
+            h-7
+            pb-1
+            rounded"
+            style="cursor: text!important;">
+            {{btn}}
+            <span
+              (click)="removeSkill(i)"
+              class="
+                  material-symbols-outlined
+                  absolute
+                  text-white
+                  text-[12px]
+                  top-0
+                  right-0
+                  bg-gray-500
+                  rounded
+                  cursor-pointer">
+              close
+            </span>
+          </button>
+        </div>
+        <input
+          #stack
+          [ngClass]="btnStacks.length < 1 ?
+                   'bl rounded-tl-md rounded-bl-md':
+                   'border-l-0'"
+          class="
+          border-t
+          border-b
+          border-l
+          border-600
+          w-full
+          h-auto
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="stack"
+          id="stack"
+          style="min-height: 48px!important;"/>
+        <button
+          (click)="add()"
+          [disabled]="!stack.value"
+          [style]="!stack.value ? {'color': '#c7c8cd'}: {'color': 'black'}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          Add
+        </button>
+      </div>
+      <span
+        class="
+        text-[#858799]
+        text-[14px]
+        font-400
+        mt-1
+        italic">
+          Type at least 3 skills
+        </span>
+      <span
+        *ngIf="form.get('stack')?.touched && btnStacks.length < 3"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="experience">Years of experience </label>
+      <div
+        class="flex align-start mt-1">
+        <input
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-[48px]
+          pl-4
+          bg-[#F8F8FA]"
+          formControlName="experience"
+          id="experience"
+          placeholder=""
+          value="3"/>
+        <button
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-[48px]
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          Edit
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'experience')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+  </form>
+  <ng-content></ng-content>
+</div>
