@@ -1,346 +1,404 @@
-<!--<div-->
-<!--  class="-->
-<!--  main-->
-<!--  rounded-->
-<!--  flex-->
-<!--  flex-col-->
-<!--  border-->
-<!--  border-600-->
-<!--  w-[684px]-->
-<!--  h-auto-->
-<!--  m-auto-->
-<!--  p-8">-->
-<!--  <h3 class="font-[700] text-[20px]">Personal Information</h3>-->
-<!--  <form [formGroup]="form">-->
-<!--    <div class="flex flex-col mt-8">-->
-<!--      <label for="firstName">First name</label>-->
-<!--      <div class="flex align-start mt-1">-->
-<!--        <input-->
-<!--          #firstName-->
-<!--          (input)="firstName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'firstName') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'firstName') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          invalid:border-pink-500-->
-<!--          border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-[48px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-[16px]"-->
-<!--          formControlName="firstName"-->
-<!--          id="firstName"-->
-<!--          value="Tbilisi"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'firstName') ? {'border-color': 'red'} : {}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-[48px]-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--          <span (click)="saveFormControl(form, 'firstName')" *ngIf="firstName.value && !checkDisable(form, 'firstName')"-->
-<!--                class="text-green-600">Save</span>-->
-<!--          <span (click)="editFormControl(form, 'firstName')" *ngIf="checkDisable(form, 'firstName')">Edit</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'firstName')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--    <div class="flex flex-col mt-6">-->
-<!--      <label for="surName">Surname</label>-->
-<!--      <div class="flex align-start mt-1">-->
-<!--        <input-->
-<!--          #surName-->
-<!--          (input)="surName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'surName') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-12-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-4"-->
-<!--          formControlName="surName"-->
-<!--          id="surName"-->
-<!--          value="Shvangirazde"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-12-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--          <span-->
-<!--            (click)="saveFormControl(form, 'surName')"-->
-<!--            *ngIf="surName.value && !checkDisable(form, 'surName')"-->
-<!--            class="text-green-600">-->
-<!--            Save-->
-<!--          </span>-->
-<!--          <span-->
-<!--            (click)="editFormControl(form, 'surName')"-->
-<!--            *ngIf="checkDisable(form, 'surName')">-->
-<!--            Edit-->
-<!--          </span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'surName')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--    <div class="flex flex-col mt-6">-->
-<!--      <label for="phone">Phone</label>-->
-<!--      <div class="relative flex align-start mt-1">-->
-<!--        <img-->
-<!--          class="absolute ml-4 top-3 w-[24px] h-[24px]"-->
-<!--          src="../../../../../assets/images/icon/icons8-netherlands1.png"/>-->
-<!--        <span class="absolute ml-[56px] top-3">+3</span>-->
-<!--        <input-->
-<!--          #phone-->
-<!--          (input)="phone.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'phone') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-[48px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-[84px]"-->
-<!--          formControlName="phone"-->
-<!--          id="phone"-->
-<!--          placeholder="97 010 1536"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-[48px]-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--         <span-->
-<!--           (click)="saveFormControl(form, 'phone')"-->
-<!--           *ngIf="phone.value && !checkDisable(form, 'phone')"-->
-<!--           class="text-green-600">-->
-<!--            Save-->
-<!--          </span>-->
-<!--          <span-->
-<!--            (click)="editFormControl(form, 'phone')"-->
-<!--            *ngIf="checkDisable(form, 'phone')">-->
-<!--            Edit-->
-<!--          </span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'phone')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--    <div class="flex flex-col mt-6">-->
-<!--      <label for="password">Password</label>-->
-<!--      <div class="flex align-start mt-1">-->
-<!--        <input-->
-<!--          #password-->
-<!--          (input)="password.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'password') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-12-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-4"-->
-<!--          formControlName="password"-->
-<!--          id="password"-->
-<!--          placeholder="Password"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-12-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--          <span-->
-<!--            (click)="saveFormControl(form, 'password')"-->
-<!--            *ngIf="password.value && !checkDisable(form, 'password')"-->
-<!--            class="text-green-600">-->
-<!--            Save-->
-<!--          </span>-->
-<!--          <span-->
-<!--            (click)="editFormControl(form, 'password')"-->
-<!--            *ngIf="checkDisable(form, 'password')">-->
-<!--            Edit-->
-<!--          </span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'password')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--    <div class="flex flex-col mt-6">-->
-<!--      <label for="email">Email</label>-->
-<!--      <div class="flex align-start mt-1">-->
-<!--        <input-->
-<!--          #email-->
-<!--          (input)="email.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'email') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-12-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-4"-->
-<!--          formControlName="email"-->
-<!--          id="email"-->
-<!--          placeholder="Mamuka.bolkvadze"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-12-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--          <span-->
-<!--            (click)="saveFormControl(form, 'email')"-->
-<!--            *ngIf="email.value && !checkDisable(form, 'email')"-->
-<!--            class="text-green-600">-->
-<!--            Save-->
-<!--          </span>-->
-<!--          <span-->
-<!--            (click)="editFormControl(form, 'email')"-->
-<!--            *ngIf="checkDisable(form, 'email')">-->
-<!--            Edit-->
-<!--          </span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'email')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--    <div class="flex flex-col mt-6">-->
-<!--      <label for="email">City</label>-->
-<!--      <div class="flex align-start mt-1">-->
-<!--        <input-->
-<!--          #city-->
-<!--          (input)="city.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"-->
-<!--          [ngClass]="checkDisable(form, 'city') ? 'opacity-80' : ''"-->
-<!--          [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--             border-t-->
-<!--          border-l-->
-<!--          border-b-->
-<!--          border-600-->
-<!--          rounded-tl-md-->
-<!--          rounded-bl-md-->
-<!--          w-full-->
-<!--          h-12-->
-<!--          bg-[#F8F8FA]-->
-<!--          pl-4"-->
-<!--          formControlName="city"-->
-<!--          id="city"-->
-<!--          placeholder="City"/>-->
-<!--        <button-->
-<!--          [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"-->
-<!--          class="-->
-<!--          pr-[15px]-->
-<!--          bg-[#F8F8FA]-->
-<!--          h-12-->
-<!--          rounded-tr-md-->
-<!--          rounded-br-md-->
-<!--          border-t-->
-<!--          border-r-->
-<!--          border-b-->
-<!--          border-600">-->
-<!--         <span-->
-<!--           (click)="saveFormControl(form, 'city')"-->
-<!--           *ngIf="city.value && !checkDisable(form, 'city')"-->
-<!--           class="text-green-600">-->
-<!--            Save-->
-<!--          </span>-->
-<!--          <span-->
-<!--            (click)="editFormControl(form, 'city')"-->
-<!--            *ngIf="checkDisable(form, 'city')">-->
-<!--            Edit-->
-<!--          </span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <span-->
-<!--        *ngIf="get(form, 'city')"-->
-<!--        class="-->
-<!--            mt-2-->
-<!--            text-red-500">-->
-<!--            Required-->
-<!--          </span>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--  <ng-content></ng-content>-->
-<!--</div>-->
+<div
+  class="
+  main
+  rounded
+  flex
+  flex-col
+  border
+  border-600
+  w-[684px]
+  h-auto
+  m-auto
+  p-8">
+  <h3 class="font-[700] text-[20px]">Personal Information</h3>
+  <form [formGroup]="form">
+    <div class="flex flex-col mt-8">
+      <label for="firstName">First name</label>
+      <div class="flex align-start mt-1">
+        <input
+          #firstName
+          (input)="firstName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'firstName') ? 'opacity-80' : ''"
+          [style]="get(form,'firstName') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          invalid:border-pink-500
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-[48px]
+          bg-[#F8F8FA]
+          pl-[16px]"
+          formControlName="firstName"
+          id="firstName"
+          value="Tbilisi"/>
+        <button
+          [style]="get(form,'firstName') ? {'border-color': 'red'} : {}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-[48px]
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          <span (click)="saveFormControl(form, 'firstName')" *ngIf="firstName.value && !checkDisable(form, 'firstName')"
+                class="text-green-600">Save</span>
+          <span (click)="editFormControl(form, 'firstName')" *ngIf="checkDisable(form, 'firstName')">Edit</span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'firstName')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="surName">Surname</label>
+      <div class="flex align-start mt-1">
+        <input
+          #surName
+          (input)="surName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'surName') ? 'opacity-80' : ''"
+          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="surName"
+          id="surName"
+          value="Shvangirazde"/>
+        <button
+          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-12
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          <span
+            (click)="saveFormControl(form, 'surName')"
+            *ngIf="surName.value && !checkDisable(form, 'surName')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'surName')"
+            *ngIf="checkDisable(form, 'surName')">
+            Edit
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'surName')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="phone">Phone</label>
+      <div class="relative flex items-center w-auto">
+        <label
+          #dropText
+          (toggle)="showDropdown = !showDropdown"
+          (close)="showDropdown = false"
+          appClickOut
+          for="country"
+          class="
+          cursor-pointer
+          h-full
+          absolute
+          pt-[2px]
+          ml-4
+          w-[72px]
+          flex
+          flex-row
+          justify-content-between
+          items-center">
+          <img [src]="imgUrl" class="w-5">
+          <span >{{callingCode}}</span>
+        </label>
+        <ng-container *ngIf="showDropdown">
+          <div
+            class="
+            absolute
+            top-14
+            rounded
+            h-[20rem]
+            flex
+            items-start
+            bg-[#F8F8FA]
+            flex-col
+            w-48
+            overflow-y-scroll">
+            <input
+              id="country"
+              (click)="showDropdown = true"
+              (input)="searchCountry($event)"
+              class="
+              ml-4
+              bg-[#F8F8FA]
+              border-b
+              border-black-600
+              w-40"
+              placeholder="search..."
+              type="text">
+            <button
+              (click)="selectCountry(country.flag, country.callingCodes)"
+              *ngFor="let country of countries"
+              class="
+              w-auto
+              pl-4
+              flex
+              flex-row
+              items-center
+              mt-1">
+              <img [src]="country.flag" alt="flag" class="w-5">
+              <span class="ml-5 w-10">{{country.alpha3Code}}</span>
+              <span class="ml-5">{{'+' + country.callingCodes}}</span>
+            </button>
+          </div>
+        </ng-container>
+        <input
+          #phone
+          (input)="phone.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'phone') ? 'opacity-80' : ''"
+          [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-[92px]"
+          type="number"
+          formControlName="phone"
+          id="phone"
+          placeholder="97 010 1536"/>
+        <button
+          [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-[48px]
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+         <span
+           (click)="saveFormControl(form, 'phone')"
+           *ngIf="phone.value && !checkDisable(form, 'phone')"
+           class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'phone')"
+            *ngIf="checkDisable(form, 'phone')">
+            Edit
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'phone')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="password">Password</label>
+      <div class="flex align-start mt-1">
+        <input
+          #password
+          (input)="password.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'password') ? 'opacity-80' : ''"
+          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="password"
+          id="password"
+          placeholder="Password"/>
+        <button
+          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-12
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          <span
+            (click)="saveFormControl(form, 'password')"
+            *ngIf="password.value && !checkDisable(form, 'password')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'password')"
+            *ngIf="checkDisable(form, 'password')">
+            Edit
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'password')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="email">Email</label>
+      <div class="flex align-start mt-1">
+        <input
+          #email
+          (input)="email.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'email') ? 'opacity-80' : ''"
+          [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="email"
+          id="email"
+          placeholder="Mamuka.bolkvadze"/>
+        <button
+          [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-12
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          <span
+            (click)="saveFormControl(form, 'email')"
+            *ngIf="email.value && !checkDisable(form, 'email')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'email')"
+            *ngIf="checkDisable(form, 'email')">
+            Edit
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'email')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div class="flex flex-col mt-6">
+      <label for="email">City</label>
+      <div class="flex align-start mt-1">
+        <input
+          #city
+          (input)="city.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'city') ? 'opacity-80' : ''"
+          [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+             border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="city"
+          id="city"
+          placeholder="City"/>
+        <button
+          [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-12
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+         <span
+           (click)="saveFormControl(form, 'city')"
+           *ngIf="city.value && !checkDisable(form, 'city')"
+           class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'city')"
+            *ngIf="checkDisable(form, 'city')">
+            Edit
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'city')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+  </form>
+  <ng-content></ng-content>
+</div>
 
 

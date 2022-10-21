@@ -3,8 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 export interface Country {
-  callingCodes: string[];
+  name: string;
+  callingCodes: string;
   flag: string;
+  alpha3Code: string;
 }
 
 @Injectable()

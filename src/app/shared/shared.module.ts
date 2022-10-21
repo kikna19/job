@@ -8,6 +8,7 @@ import {SocialLoginModule} from "@abacritt/angularx-social-login";
 import {AlertModule} from "../alert/alert.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
+import { ClickOutDirective } from './directives/click-out.directive';
 
 
 
@@ -17,6 +18,7 @@ import {RouterModule} from "@angular/router";
     FooterComponent,
     LandingComponent,
     LayoutComponent,
+    ClickOutDirective,
 
   ],
   imports: [
@@ -26,11 +28,12 @@ import {RouterModule} from "@angular/router";
     HttpClientModule,
      RouterModule
   ],
-  exports:[
-    HeaderComponent,
-    FooterComponent,
-    LandingComponent,
-    LayoutComponent
-  ]
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+        LandingComponent,
+        LayoutComponent,
+        ClickOutDirective
+    ]
 })
 export class SharedModule { }
