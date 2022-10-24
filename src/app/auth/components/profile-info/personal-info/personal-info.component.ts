@@ -1,6 +1,8 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {Country, CountryAllService} from "../../../../shared/services/country-all.service";
+import {finalize, fromEvent, pluck} from "rxjs";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-personal-info',
@@ -17,6 +19,9 @@ export class PersonalInfoComponent implements OnInit {
   fullName: string;
   showDropdown: boolean = false;
   @ViewChild('dropText', {static: false}) drop: ElementRef;
+  @ViewChild('callingCodeVal', {static: false}) callingCodeVal: ElementRef;
+  @ViewChild('nameCodeVal', {static: false}) nameCodeVal: ElementRef;
+  @ViewChild('phone', {static: false}) phone: ElementRef;
 
   constructor(
     private countriesService: CountryAllService,
@@ -31,6 +36,7 @@ export class PersonalInfoComponent implements OnInit {
           const defaultCountry: Country = <Country>this.countries.find((item: Country) => item.name === 'Netherlands');
           this.imgUrl = defaultCountry.flag;
           this.callingCode = '+' + defaultCountry.callingCodes;
+          this.nameCode = defaultCountry.name;
           this.countriesCopy = this.countries;
         }
       )
@@ -39,6 +45,7 @@ export class PersonalInfoComponent implements OnInit {
   openDropdown(): void {
     this.showDropdown = true;
   }
+
 
 
   searchCountry(e: any): void {
@@ -55,9 +62,10 @@ export class PersonalInfoComponent implements OnInit {
     }
   }
 
-  selectCountry(imgUrl: string, code: string): void {
+  selectCountry(imgUrl: string, code: string, name: string): void {
     this.imgUrl = imgUrl;
     this.callingCode = '+' + code;
+    this.nameCode = name;
     this.showDropdown = false;
   }
 
@@ -67,6 +75,16 @@ export class PersonalInfoComponent implements OnInit {
 
   saveFormControl(form: FormGroup, control: string): void {
     form.get(control)?.disable();
+  }
+
+  savePhone(){
+    this.saveFormControl(this.form,'phone');
+    this.form.get('country')?.setValue([
+      this.callingCodeVal.nativeElement.innerHTML,
+      this.nameCodeVal.nativeElement.innerHTML,
+    ]);
+    this.saveFormControl(this.form,'country');
+
   }
 
 

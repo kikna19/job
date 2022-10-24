@@ -26,12 +26,12 @@ export class SignupComponent implements OnInit {
 
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private socialAuthService: SocialAuthService, private store: Store, private alert: AlertService, private test: AuthService, private route: ActivatedRoute, private http: HttpClient, private zone: NgZone) { 
-    
+  constructor(private socialAuthService: SocialAuthService, private store: Store, private alert: AlertService, private test: AuthService, private route: ActivatedRoute, private http: HttpClient, private zone: NgZone) {
+
   }
 
   ngOnInit(): void {
-   
+
     this.googleAuthSDK();
     this.subscription = this.error$.subscribe(message => {
       this.alert.error(message!);
@@ -77,7 +77,7 @@ export class SignupComponent implements OnInit {
 
 
   callLogin() {
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},    
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleAuthUser: any) => {
         let profile = googleAuthUser.getBasicProfile();
         this.zone.run(() => {
@@ -95,9 +95,9 @@ export class SignupComponent implements OnInit {
   }
 
   googleAuthSDK() {
-    (<any>window)['googleSDKLoaded'] = () => {  
-      (<any>window)['gapi'].load('auth2', () => {      
-        this.auth2 = (<any>window)['gapi'].auth2.init({         
+    (<any>window)['googleSDKLoaded'] = () => {
+      (<any>window)['gapi'].load('auth2', () => {
+        this.auth2 = (<any>window)['gapi'].auth2.init({
           //real client_id
           client_id: '419364057897-bn5o31m2rdk4m8lc5rcum6kvd077vd9d.apps.googleusercontent.com',
 
@@ -105,13 +105,13 @@ export class SignupComponent implements OnInit {
         //  client_id: '419364057897-pa0u3m1dhmv5c75hehqtnkuj5qovvshb.apps.googleusercontent.com',
           plugin_name: 'login',
           cookiepolicy: 'single_host_origin',
-          scope: 'profile email',
+          scope: 'profile-info email',
           ux_mode: 'redirect'
         });
         this.callLogin();
       });
     }
- 
+
      (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) { return; }
@@ -120,7 +120,7 @@ export class SignupComponent implements OnInit {
       js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
       fjs?.parentNode?.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
- 
+
   }
 }
 

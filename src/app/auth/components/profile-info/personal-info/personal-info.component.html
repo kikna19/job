@@ -115,15 +115,63 @@
             Required
           </span>
     </div>
-    <div class="flex flex-col mt-6">
+
+    <div [hidden]="!password.value" class="flex flex-col mt-6">
+      <label for="password">Password</label>
+      <div class="flex align-start mt-1">
+        <input
+          #password
+          (input)="password.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'password') ? 'opacity-80' : ''"
+          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          border-t
+          border-l
+          border-b
+          border-600
+          rounded-tl-md
+          rounded-bl-md
+          w-full
+          h-12
+          bg-[#F8F8FA]
+          pl-4"
+          formControlName="password"
+          id="password"
+          placeholder="Password"
+          type="password"/>
+        <button
+          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
+          class="
+          pr-[15px]
+          bg-[#F8F8FA]
+          h-12
+          rounded-tr-md
+          rounded-br-md
+          border-t
+          border-r
+          border-b
+          border-600">
+          <span routerLink="/profile-info/change-password">
+            Change
+          </span>
+        </button>
+      </div>
+      <span
+        *ngIf="get(form, 'password')"
+        class="
+            mt-2
+            text-red-500">
+            Required
+          </span>
+    </div>
+    <div [hidden]="!phone.value" class="flex flex-col mt-6">
       <label for="phone">Phone</label>
       <div class="relative flex items-center w-auto">
         <label
           #dropText
-          (toggle)="showDropdown = !showDropdown"
           (close)="showDropdown = false"
+          (toggle)="showDropdown = !showDropdown"
           appClickOut
-          for="country"
           class="
           cursor-pointer
           h-full
@@ -134,9 +182,11 @@
           flex
           flex-row
           justify-content-between
-          items-center">
+          items-center"
+          for="country">
           <img [src]="imgUrl" class="w-5">
-          <span >{{callingCode}}</span>
+          <span #nameCodeVal hidden>{{nameCode}}</span>
+          <span #callingCodeVal>{{callingCode}}</span>
         </label>
         <ng-container *ngIf="showDropdown">
           <div
@@ -152,7 +202,6 @@
             w-48
             overflow-y-scroll">
             <input
-              id="country"
               (click)="showDropdown = true"
               (input)="searchCountry($event)"
               class="
@@ -161,10 +210,11 @@
               border-b
               border-black-600
               w-40"
+              id="country"
               placeholder="search..."
               type="text">
             <button
-              (click)="selectCountry(country.flag, country.callingCodes)"
+              (click)="selectCountry(country.flag, country.callingCodes, country.name)"
               *ngFor="let country of countries"
               class="
               w-auto
@@ -195,10 +245,10 @@
           h-12
           bg-[#F8F8FA]
           pl-[92px]"
-          type="number"
           formControlName="phone"
           id="phone"
-          placeholder="97 010 1536"/>
+          placeholder="97 010 1536"
+          type="number"/>
         <button
           [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -211,15 +261,7 @@
           border-r
           border-b
           border-600">
-         <span
-           (click)="saveFormControl(form, 'phone')"
-           *ngIf="phone.value && !checkDisable(form, 'phone')"
-           class="text-green-600">
-            Save
-          </span>
-          <span
-            (click)="editFormControl(form, 'phone')"
-            *ngIf="checkDisable(form, 'phone')">
+         <span>
             Edit
           </span>
         </button>
@@ -232,62 +274,7 @@
             Required
           </span>
     </div>
-    <div class="flex flex-col mt-6">
-      <label for="password">Password</label>
-      <div class="flex align-start mt-1">
-        <input
-          #password
-          (input)="password.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
-          [ngClass]="checkDisable(form, 'password') ? 'opacity-80' : ''"
-          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
-          class="
-          border-t
-          border-l
-          border-b
-          border-600
-          rounded-tl-md
-          rounded-bl-md
-          w-full
-          h-12
-          bg-[#F8F8FA]
-          pl-4"
-          formControlName="password"
-          id="password"
-          placeholder="Password"/>
-        <button
-          [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
-          class="
-          pr-[15px]
-          bg-[#F8F8FA]
-          h-12
-          rounded-tr-md
-          rounded-br-md
-          border-t
-          border-r
-          border-b
-          border-600">
-          <span
-            (click)="saveFormControl(form, 'password')"
-            *ngIf="password.value && !checkDisable(form, 'password')"
-            class="text-green-600">
-            Save
-          </span>
-          <span
-            (click)="editFormControl(form, 'password')"
-            *ngIf="checkDisable(form, 'password')">
-            Edit
-          </span>
-        </button>
-      </div>
-      <span
-        *ngIf="get(form, 'password')"
-        class="
-            mt-2
-            text-red-500">
-            Required
-          </span>
-    </div>
-    <div class="flex flex-col mt-6">
+    <div [hidden]="!email.value" class="flex flex-col mt-6">
       <label for="email">Email</label>
       <div class="flex align-start mt-1">
         <input
@@ -321,16 +308,8 @@
           border-r
           border-b
           border-600">
-          <span
-            (click)="saveFormControl(form, 'email')"
-            *ngIf="email.value && !checkDisable(form, 'email')"
-            class="text-green-600">
-            Save
-          </span>
-          <span
-            (click)="editFormControl(form, 'email')"
-            *ngIf="checkDisable(form, 'email')">
-            Edit
+          <span>
+            Change
           </span>
         </button>
       </div>
@@ -385,7 +364,7 @@
           <span
             (click)="editFormControl(form, 'city')"
             *ngIf="checkDisable(form, 'city')">
-            Edit
+            Change
           </span>
         </button>
       </div>

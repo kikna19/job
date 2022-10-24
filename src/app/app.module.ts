@@ -4,12 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/layout/header/header.component';
-import { FooterComponent } from './shared/components/layout/footer/footer.component';
-import { LandingComponent } from './shared/components/layout/landing/landing.component';
-import { LoginComponent } from './auth/components/login/login.component';
-import { SignupComponent } from './auth/components/signup/signup.component';
-import { SingupInfoComponent } from './auth/components/singup-info/singup-info.component';
 
 
 import { AuthService } from './auth/services/auth.service';
@@ -18,8 +12,6 @@ import { authReducer } from './state/auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/auth/auth.effects';
 import { HttpClientModule } from '@angular/common/http';
-import { SignupSuccessComponent } from './auth/components/signup-success/signup-success.component';
-import { AlertModule } from './alert/alert.module';
 import { AlertService } from './alert/alert.service';
 import {StoreDevtoolsModule } from '@ngrx/store-devtools'
 import {
@@ -30,9 +22,6 @@ import {
   GoogleInitOptions,
 } from '@abacritt/angularx-social-login';
 
-import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
-import { CodeVerificationComponent } from './auth/components/code-verification/code-verification.component';
-import { PasswordChangeComponent } from './auth/components/password-change/password-change.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from './auth/guards/authguard';
 import { environment } from 'src/environments/environment';

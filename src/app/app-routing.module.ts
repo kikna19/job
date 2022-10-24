@@ -1,4 +1,4 @@
-import { ProfileComponent } from './auth/components/profile/profile.component';
+import { ProfileComponent } from './auth/components/profile-info/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CodeVerificationComponent } from './auth/components/code-verification/code-verification.component';
@@ -10,6 +10,9 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { SingupInfoComponent } from './auth/components/singup-info/singup-info.component';
 import { LandingComponent } from './shared/components/layout/landing/landing.component';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import {
+  PasswordChageInfoComponent
+} from "./auth/components/profile-info/password-chage-info/password-chage-info.component";
 
 const routes: Routes = [
   {
@@ -54,11 +57,15 @@ const routes: Routes = [
   },
 
   {
-    path: 'profile',
+    path: 'profile-info',
     component: ProfileComponent,
+  },
+
+  {
+    path: 'profile-info/change-password',
+    component: PasswordChageInfoComponent
   }
-  
-  
+
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-profile-info',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -22,12 +22,12 @@ export class ProfileComponent implements OnInit {
   ) {
     this.form = this.fb.array([
       this.firstForm = this.fb.group({
-        firstName: ['s', Validators.required],
+        firstName: ['john', Validators.required],
         surName: ['doe', Validators.required],
-        phone: ['', Validators.required],
-        password: ['', Validators.required],
-        email: ['', Validators.required],
-        city: ['', Validators.required],
+        phone: ['123', Validators.required],
+        password: ['123', Validators.required],
+        email: ['wer', Validators.required],
+        city: ['tbilisi', Validators.required],
       }),
       this.secondForm = this.fb.group({
         occupation: ['', Validators.required],

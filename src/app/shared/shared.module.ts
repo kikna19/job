@@ -9,6 +9,9 @@ import {AlertModule} from "../alert/alert.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import { ClickOutDirective } from './directives/click-out.directive';
+import {
+  PasswordChageInfoComponent
+} from "../auth/components/profile-info/password-chage-info/password-chage-info.component";
 
 
 
@@ -19,6 +22,7 @@ import { ClickOutDirective } from './directives/click-out.directive';
     LandingComponent,
     LayoutComponent,
     ClickOutDirective,
+    PasswordChageInfoComponent,
 
   ],
   imports: [

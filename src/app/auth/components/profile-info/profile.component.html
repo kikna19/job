@@ -58,7 +58,7 @@
     role="presentation">
     <button
       #work
-      [style]="firstForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      [style]="firstForm.disabled ? {'color':'black'} :  {'color':'grey'}"
 
       aria-controls="tabs-experience"
       aria-selected="false"
@@ -91,8 +91,8 @@
     role="presentation">
     <button
       #situation
-      [disabled]="secondForm.invalid"
-      [style]="secondForm.valid ? {'color':'black'} :  {'color':'grey'}"
+
+       [style]="secondForm.valid ? {'color':'black'} :  {'color':'grey'}"
       aria-controls="tabs-situation"
       aria-selected="false"
       class="
@@ -190,7 +190,7 @@
         items-end">
         <button
           (click)="work.click()"
-          [disabled]="firstForm.invalid"
+          [disabled]="firstForm.valid"
           class="
           disabled:bg-[#97BEFF]
           bg-[#005AFF]

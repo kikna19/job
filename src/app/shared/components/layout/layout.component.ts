@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams
-      .subscribe(params => {        
+      .subscribe(params => {
         if (params['code']) {
           var link = 'https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&client_id=77h3elhxwkkicl&client_secret=OP01e2bnvZz2bFP0&code=' + params['code'] + '&redirect_uri=https://jobboard.admi.ge/';
           this.http.get<any>(link, {}).subscribe(x => {
@@ -27,8 +27,8 @@ export class LayoutComponent implements OnInit {
               console.log('data'+n)
               // this.store.dispatch(AuthActions.externalLoginRequest({
               //   credentials: {
-              //     provider: 'LINKEDIN', id: profile.getId(), authToken: googleAuthUser.getAuthResponse().id_token,
-              //     email: profile.getEmail(), firstName: profile.getGivenName(), lastName: profile.getFamilyName()
+              //     provider: 'LINKEDIN', id: profile-info.getId(), authToken: googleAuthUser.getAuthResponse().id_token,
+              //     email: profile-info.getEmail(), firstName: profile-info.getGivenName(), lastName: profile-info.getFamilyName()
               //  }
               // })
               // );

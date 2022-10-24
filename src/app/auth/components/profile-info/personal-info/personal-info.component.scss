@@ -6,3 +6,15 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   opacity: 0;
 }
+
+@media (max-width: 764px) {
+  .main {
+    width: auto
+  }
+}
+
+@media (max-width: 380px) {
+  .main{
+    padding: 1rem;
+  }
+}
