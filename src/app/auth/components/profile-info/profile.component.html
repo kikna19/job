@@ -58,8 +58,8 @@
     role="presentation">
     <button
       #work
-      [style]="firstForm.disabled ? {'color':'black'} :  {'color':'grey'}"
-
+      [disabled]="!!personalForm.enabled"
+      [style]="personalForm.disabled ? {'color':'black'} :  {'color':'grey'}"
       aria-controls="tabs-experience"
       aria-selected="false"
       class="
@@ -91,8 +91,8 @@
     role="presentation">
     <button
       #situation
-
-       [style]="secondForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      [disabled]="!!experienceForm.enabled"
+      [style]="experienceForm.disabled ? {'color':'black'} :  {'color':'grey'}"
       aria-controls="tabs-situation"
       aria-selected="false"
       class="
@@ -122,9 +122,9 @@
     text-center"
     role="presentation">
     <button
-
       #cv
-      [style]="thirdForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      [disabled]="!!situationForm.enabled"
+      [style]="situationForm.disabled ? {'color':'black'} :  {'color':'grey'}"
       aria-controls="tabs-cv"
       aria-selected="false"
       class="
@@ -154,7 +154,8 @@
     text-center"
     role="presentatione">
     <button
-      [style]="thirdForm.valid ? {'color':'black'} :  {'color':'grey'}"
+      [disabled]="!!situationForm.enabled"
+      [style]="situationForm.disabled ? {'color':'black'} :  {'color':'grey'}"
       aria-controls="tabs-cv"
       aria-selected="false"
       class="
@@ -180,7 +181,7 @@
 <div class="tab-content mt-10" id="tabs-tabContent3">
   <!-- First Tab -->
   <div aria-labelledby="tabs-info-tab" class="tab-pane fade show active" id="tabs-info" role="tabpanel">
-    <app-personal-info [form]="firstForm">
+    <app-personal-info [form]="personalForm">
       <div
         class="
         mt-6
@@ -190,7 +191,7 @@
         items-end">
         <button
           (click)="work.click()"
-          [disabled]="firstForm.valid"
+          [disabled]="!!personalForm.enabled"
           class="
           disabled:bg-[#97BEFF]
           bg-[#005AFF]
@@ -208,7 +209,7 @@
   </div>
   <!-- Second Tab -->
   <div aria-labelledby="tabs-experience-tab" class="tab-pane fade" id="tabs-experience" role="tabpanel">
-    <app-work-experiece [form]="secondForm">
+    <app-work-experiece [form]="experienceForm">
       <div
         class="
         mt-6
@@ -218,7 +219,7 @@
         items-end">
         <button
           (click)="situation.click()"
-          [disabled]="form.invalid"
+          [disabled]="!!experienceForm.enabled"
           class="
           disabled:bg-[#97BEFF]
           bg-[#005AFF]
@@ -236,7 +237,7 @@
   </div>
   <!-- Third Tab -->
   <div aria-labelledby="tabs-situation-tab" class="tab-pane fade" id="tabs-situation" role="tabpanel">
-    <app-current-situation [form]="thirdForm">
+    <app-current-situation [form]="situationForm">
       <div
         class="
         mt-6
@@ -246,7 +247,7 @@
         items-end">
         <button
           (click)="cv.click()"
-          [disabled]="thirdForm.invalid"
+          [disabled]="!!situationForm.enabled"
           class="
           disabled:bg-[#97BEFF]
           bg-[#005AFF]
@@ -264,7 +265,7 @@
   </div>
   <!-- Fourth Tab -->
   <div aria-labelledby="tabs-cv-tab" class="tab-pane fade" id="tabs-cv" role="tabpanel">
-    <app-cv [form]="fourthForm">
+    <app-cv [form]="cvForm">
       <div
         class="
         mt-6
@@ -273,8 +274,8 @@
         justify-content-end
         items-end">
         <button
-          [disabled]="fourthForm.invalid"
-          [style]="thirdForm.invalid ?
+          [disabled]="cvForm.invalid"
+          [style]="cvForm.invalid ?
            {'background': '#97BEFF'} :
            {'background': '#005AFF'}"
           class="
@@ -292,7 +293,7 @@
   </div>
   <!-- Fifth Tab -->
   <div aria-labelledby="tabs-e-cv-tab" class="tab-pane fade" id="tabs-e-cv" role="tabpanel">
-    <app-e-cv [form]="fifthForm">
+    <app-e-cv [form]="ecvFrom">
       <div
         class="
         mt-6
@@ -301,7 +302,7 @@
         justify-content-end
         items-end">
         <button
-          [disabled]="fifthForm.invalid"
+          [disabled]="ecvFrom.invalid"
           class="
           disabled:bg-[#97BEFF]
           bg-[#005AFF]

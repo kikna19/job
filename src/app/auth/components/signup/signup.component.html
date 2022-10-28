@@ -1,4 +1,4 @@
-<!-- <div>
+<<div>
     <div class="auth_header">
         <img [routerLink]="'/'" src="./assets/images/logo/header_logo.svg" alt="WeCruitment" class="center" />
     </div>
@@ -8,23 +8,23 @@
             <div class="signup_header">
                 <span> Sign up</span>
             </div>
-        
+
             <button type="button" class="login-with-google-btn btn btn-signup" #loginRef>
                 <img src="./assets/images/icon/google.svg"/>
                     <span> Sign in with Gmail</span>
               </button>
 
-            <div class="linkedin">               
+            <div class="linkedin">
                 <button type="button" class="btn btn-signup linkedIn" >
                     <img src="./assets/images/icon/linkedin.svg" />
                     <span> Sign in with Linkedin</span>
                 </button>
             </div>
             <div class="facebook">
-                <button type="button" class="btn btn-signup" (click)="externalLogin('FACEBOOK')">
-                    <img src="./assets/images/icon/facebook.svg" />
-                    <span> Sign in with Facebook</span>
-                </button>
+<!--                <button type="button" class="btn btn-signup" (click)="externalLogin('FACEBOOK')">-->
+<!--                    <img src="./assets/images/icon/facebook.svg" />-->
+<!--                    <span> Sign in with Facebook</span>-->
+<!--                </button>-->
             </div>
             <div class="email">
                 <button type="button" class="btn btn-signup" [routerLink]="'/auth/signup-info'">
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <div>
     <div class="auth_header">
         <img [routerLink]="'/'" src="./assets/images/logo/header_logo.svg" alt="WeCruitment" class="center" />
@@ -50,7 +50,7 @@
                 <span> Sign up</span>
             </div>
 
-            <!-- <div
+            <div
           id="g_id_onload"
           class="w-full"
           style="display: none"
@@ -68,27 +68,27 @@
           data-text="continue_with"
           data-logo_alignment="center"
           data-width="328"
-        ></div> -->
-            
+        ></div>
+
             <div class="auth_buttons" id="google_login" #loginRef>
                 <img src="./assets/images/icon/gmail.svg" />
                 <span> Continue with Gmail</span>
             </div>
-            <div class="auth_buttons" (click)="signinWithLinkedin()">                
+            <div class="auth_buttons" (click)="signinWithLinkedin()">
                 <img src="./assets/images/icon/linkedin.svg"/>
                 <span> Continue with Linkedin</span>
             </div>
-            <div class="auth_buttons" (click)="externalLogin('FACEBOOK')">
-                <img src="./assets/images/icon/facebook.svg" />
-                <span> Continue with Facebook</span>
-            </div>
+<!--            <div class="auth_buttons" (click)="externalLogin('FACEBOOK')">-->
+<!--                <img src="./assets/images/icon/facebook.svg" />-->
+<!--                <span> Continue with Facebook</span>-->
+<!--            </div>-->
             <div class="auth_buttons" [routerLink]="'/auth/signup-info'">
                 <img src="./assets/images/icon/email.svg" />
                 <span> Sign up with Email</span>
-            </div>           
+            </div>
             <div class="auth_buttons_last">
                 <span>
-                    I already have an account. <a [routerLink]="'/auth/login'">Sign in </a> 
+                    I already have an account. <a [routerLink]="'/auth/login'">Sign in </a>
                 </span>
             </div>
         </div>

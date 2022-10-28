@@ -1,8 +1,9 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {Country, CountryAllService} from "../../../../shared/services/country-all.service";
-import {finalize, fromEvent, pluck} from "rxjs";
-import {take} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {UserState} from "../../../models/user.state";
+import {ProfileInfoService} from "../../../services/profile-info.service";
 
 @Component({
   selector: 'app-personal-info',
@@ -10,6 +11,7 @@ import {take} from "rxjs/operators";
   styleUrls: ['./personal-info.component.scss']
 })
 export class PersonalInfoComponent implements OnInit {
+  user: any;
   countries: Country[];
   private countriesCopy: Country[] = [];
   @Input() form: FormGroup;
@@ -25,6 +27,7 @@ export class PersonalInfoComponent implements OnInit {
 
   constructor(
     private countriesService: CountryAllService,
+    private profileInfoService: ProfileInfoService
   ) {
   }
 
@@ -39,13 +42,15 @@ export class PersonalInfoComponent implements OnInit {
           this.nameCode = defaultCountry.name;
           this.countriesCopy = this.countries;
         }
-      )
+      );
+    this.user = this.profileInfoService.getFullInfo().subscribe();
+
   }
+
 
   openDropdown(): void {
     this.showDropdown = true;
   }
-
 
 
   searchCountry(e: any): void {
@@ -73,28 +78,34 @@ export class PersonalInfoComponent implements OnInit {
     form.get(control)?.enable();
   }
 
+  updateFormControlValue(elementId: any, form: FormGroup, control: string): void {
+    elementId.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md');
+  }
+
   saveFormControl(form: FormGroup, control: string): void {
     form.get(control)?.disable();
   }
 
-  savePhone(){
-    this.saveFormControl(this.form,'phone');
+  savePhone() {
+    this.saveFormControl(this.form, 'phone');
     this.form.get('country')?.setValue([
       this.callingCodeVal.nativeElement.innerHTML,
       this.nameCodeVal.nativeElement.innerHTML,
     ]);
-    this.saveFormControl(this.form,'country');
+    this.saveFormControl(this.form, 'country');
 
   }
 
 
   get(form: FormGroup, formControl: string): boolean {
-    return !!(form.get(formControl)?.touched && form.get(formControl)?.invalid);
+    return !!(
+      form.get(formControl)?.touched &&
+      form.get(formControl)?.invalid
+    );
   }
 
   checkDisable(form: FormGroup, control: string): boolean {
     return !!form.get(control)?.disabled;
-
   }
 
   log(a: any) {

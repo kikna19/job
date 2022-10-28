@@ -98,6 +98,10 @@
       <div
         class="flex align-start mt-1">
         <input
+          #company
+          (input)="updateFormControlValue(company)"
+          [ngClass]="checkDisable(form, 'company') ? 'opacity-80' : ''"
+          [style]="get(form,'company') ? {'border-color': 'red'} : {'border': ''}"
           class="
             border-t
             border-l
@@ -114,7 +118,7 @@
           placeholder=""
           value="Tesla"/>
         <button
-          [disabled]="hiredTwo"
+          [style]="get(form,'company') ? {'border-color': 'red'} : {'border': ''}"
           class="
             pr-[15px]
             bg-[#F8F8FA]
@@ -125,7 +129,17 @@
             border-r
             border-b
             border-600">
-          Edit
+          <span
+            (click)="saveFormControl(form, 'company')"
+            *ngIf="company.value && !checkDisable(form, 'company')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'company')"
+            *ngIf="company.value && checkDisable(form, 'company')">
+            Edit
+          </span>
         </button>
       </div>
       <span
@@ -141,6 +155,10 @@
       <div
         class="flex align-start mt-1">
         <input
+          #salary
+          (input)="updateFormControlValue(salary)"
+          [ngClass]="checkDisable(form, 'salary') ? 'opacity-80' : ''"
+          [style]="get(form,'salary') ? {'border-color': 'red'} : {'border': ''}"
           class="
             border-t
             border-l
@@ -157,7 +175,7 @@
           placeholder=""
           value="4000 €"/>
         <button
-          [disabled]="hiredTwo"
+          [style]="get(form,'salary') ? {'border-color': 'red'} : {'border': ''}"
           class="
             pr-[15px]
             bg-[#F8F8FA]
@@ -168,7 +186,17 @@
             border-r
             border-b
             border-600">
-          Edit
+          <span
+            (click)="saveFormControl(form, 'salary')"
+            *ngIf="salary.value && !checkDisable(form, 'salary')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'salary')"
+            *ngIf="salary.value && checkDisable(form, 'salary')">
+            Edit
+          </span>
         </button>
       </div>
       <span
@@ -265,6 +293,10 @@
       <div
         class="flex align-start mt-1">
         <input
+          #bonus
+          (input)="updateFormControlValue(bonus)"
+          [ngClass]="checkDisable(form, 'bonus') ? 'opacity-80' : ''"
+          [style]="get(form,'bonus') ? {'border-color': 'red'} : {'border': ''}"
           class="
             border-t
             border-l
@@ -276,12 +308,12 @@
             h-[48px]
             pl-4
             bg-[#F8F8FA]"
+          type="number"
           formControlName="bonus"
           id="bonus"
-          placeholder=""
-          value="1200 €"/>
+          placeholder=""/>
         <button
-          [disabled]="bonusTwo"
+          [style]="get(form,'bonus') ? {'border-color': 'red'} : {'border': ''}"
           class="
             pr-[15px]
             bg-[#F8F8FA]
@@ -292,7 +324,17 @@
             border-r
             border-b
             border-600">
-          Edit
+          <span
+            (click)="saveFormControl(form, 'bonus')"
+            *ngIf="bonus.value && !checkDisable(form, 'bonus')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'bonus')"
+            *ngIf="bonus.value && checkDisable(form, 'bonus')">
+            Edit
+          </span>
         </button>
       </div>
       <span

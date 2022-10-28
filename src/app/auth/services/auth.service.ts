@@ -1,37 +1,62 @@
-import { Injectable } from '@angular/core';
-import { catchError, mapTo, Observable, of, tap } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { User, SignUpResponse, LoginResponse, passwordResetResponse, codeValidationResponse, newPasswordResponse, Tokens } from '../models/user';
-import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginResponse, SignUpResponse} from '../models/user.state';
+import {environment} from 'src/environments/environment.prod';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable()
-export class AuthService { 
-  private apiUrl: string = environment.apiBaseUrl + '/User';
+export class AuthService {
+  private apiUrl: string = environment.apiBaseUrl;
+  private headers: HttpHeaders;
 
-  constructor(private http: HttpClient,private jwtHelper: JwtHelperService) { }
-
-  logIn(email: string, password: string): Observable<any> {
-    const request = {
-      Username: '' + email,
-      Password: '' + password
-    };
-    return this.http.post<LoginResponse>(this.apiUrl + '/Login', { request })
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    this.headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    })
   }
 
-  signUp(firstName: string, lastName: string, phoneNumber: string, email: string, password: string, role: string): Observable<any> {
-    const request = {
-      FirstName: '' + firstName,
-      LastName: '' + lastName,
-      PhoneNumber: '' + phoneNumber,
-      Email: '' + email,
-      Password: '' + password,
-      RoleName: '' + 'Candidate',
-    };
-    return this.http.post<SignUpResponse>(this.apiUrl + '/AddUser', { request });
+  logIn(
+    email: string,
+    password: string
+  ): Observable<any> {
+
+    const body = JSON.stringify({
+      "email": "kiknadzevazha@gmail.com",
+      "password": "asdfas1234",
+      // "email": "vazhakiknadze111@ens.tsu.edu.ge",
+      // "password": "12345678"
+    })
+    return this.http.post<LoginResponse>('https://jobboard.admi.ge/api/api/v1/account/login', body, {headers: this.headers})
   }
-  
-  externalLogIn(data: any): Observable<any> {   
+
+  signUp(
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
+    password: string,
+    cv?: string | null
+  ): Observable<any> {
+    const body = JSON.stringify({
+      // "firstName": `${firstName}`,
+      // "lastName": `${lastName}`,
+      // "password": `${password}`,
+      // "phoneNumber": `${phoneNumber}`,
+      // "email": `${email}`,
+      // "uploadedCvId": `${cv}`,
+      "firstName": "gio",
+      "lastName": "gio",
+      "password":"12345678",
+      "phoneNumber": "995574079685",
+      "email": "vazhakiknadze111@ens.tsu.edu.ge",
+      "uploadedCvId": "string"
+    })
+    return this.http.post<SignUpResponse>('https://jobboard.admi.ge/api/api/v1/account/register-candidate', body, {headers: this.headers});
+  }
+
+  externalLogIn(data: any): Observable<any> {
     const userData = {
       LoginProvider: '' + data.provider,
       ProviderKey: '' + data.id,
@@ -40,24 +65,24 @@ export class AuthService {
       FirstName: '' + data.firstName,
       LastName: '' + data.lastName,
     };
-    return this.http.post<SignUpResponse>(this.apiUrl + '/ExternalLogin', { userData });
+    return this.http.post<SignUpResponse>(this.apiUrl + '/ExternalLogin', {userData});
   }
 
-  resetPassword(email: string): Observable<any> {
-    return this.http.post<passwordResetResponse>(this.apiUrl + '/SendMail', { email: email });
-  }
-
-  checkCodeValidation(email: string, code: string): Observable<any> {
-    return this.http.post<codeValidationResponse>(this.apiUrl + '/ValidateCode', { email: email, code: code });
-  }
-  
-  setNewPassword(email: string, password: string): Observable<any> {
-    return this.http.post<newPasswordResponse>(this.apiUrl + '/ChangePassword', { email: email, password: password });
-  }
+  // resetPassword(email: string): Observable<any> {
+  //   return this.http.post<passwordResetResponse>(this.apiUrl + '/SendMail', {email: email});
+  // }
+  //
+  // checkCodeValidation(email: string, code: string): Observable<any> {
+  //   return this.http.post<codeValidationResponse>(this.apiUrl + '/ValidateCode', {email: email, code: code});
+  // }
+  //
+  // setNewPassword(email: string, password: string): Observable<any> {
+  //   return this.http.post<newPasswordResponse>(this.apiUrl + '/ChangePassword', {email: email, password: password});
+  // }
 
   isUserAuthenticated = (): boolean => {
-    const token = localStorage.getItem("jwt"); 
-    if (token && !this.jwtHelper.isTokenExpired(token)){    
+    const token = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
       return true;
     }
     return false;

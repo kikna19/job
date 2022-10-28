@@ -15,6 +15,10 @@
       <label for="occupation">Occupation</label>
       <div class="flex align-start mt-1">
         <input
+          #occupation
+          (input)="updateFormControlValue(occupation)"
+          [ngClass]="checkDisable(form, 'occupation') ? 'opacity-80' : ''"
+          [style]="get(form,'occupation') ? {'border-color': 'red'} : {'border': ''}"
           class="
             border-t
             border-l
@@ -30,6 +34,7 @@
           id="occupation"
           value="Ui/Ux Designer"/>
         <button
+          [style]="get(form,'occupation') ? {'border-color': 'red'} : {'border': ''}"
           class="
             pr-[15px]
             bg-[#F8F8FA]
@@ -40,7 +45,17 @@
             border-r
             border-b
             border-600">
-          Edit
+          <span
+            (click)="saveFormControl(form, 'occupation')"
+            *ngIf="occupation.value && !checkDisable(form, 'occupation')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'occupation')"
+            *ngIf="checkDisable(form, 'occupation')">
+            Edit
+          </span>
         </button>
       </div>
       <span
@@ -53,8 +68,9 @@
     </div>
     <div class="flex flex-col mt-6">
       <label for="stack">Stack</label>
-      <div class="flex align-start h-auto flex-row mt-1 ">
+      <div class="flex align-start h-auto flex-row mt-1">
         <div
+          [style]="showErrMsg && btnStacks.length <  3 ? {'border-color': 'red'} : {'border': ''}"
           *ngIf="btnStacks.length >= 1"
           class="
            max-w-[400px]
@@ -101,10 +117,16 @@
           </button>
         </div>
         <input
+          formControlName="stack"
+          hidden>
+        <input
           #stack
+          (input)="addBtn.disabled = false"
+          (blur)="showErrMsg = true"
           [ngClass]="btnStacks.length < 1 ?
                    'bl rounded-tl-md rounded-bl-md':
                    'border-l-0'"
+          [style]="showErrMsg && btnStacks.length <  3 ? {'border-color': 'red'} : {'border': ''}"
           class="
           border-t
           border-b
@@ -114,13 +136,14 @@
           h-auto
           bg-[#F8F8FA]
           pl-4"
-          formControlName="stack"
           id="stack"
           style="min-height: 48px!important;"/>
         <button
+          #addBtn
           (click)="add()"
-          [disabled]="!stack.value"
-          [style]="!stack.value ? {'color': '#c7c8cd'}: {'color': 'black'}"
+          [disabled]="true"
+          [ngClass]="stack.value ? 'text-black': 'text-[#c7c8cd]'"
+          [style]="showErrMsg && btnStacks.length < 3 ? {'border-color': 'red'} : {'border': ''}"
           class="
           pr-[15px]
           bg-[#F8F8FA]
@@ -143,7 +166,7 @@
           Type at least 3 skills
         </span>
       <span
-        *ngIf="form.get('stack')?.touched && btnStacks.length < 3"
+        *ngIf="showErrMsg && btnStacks.length < 3"
         class="
             mt-2
             text-red-500">
@@ -155,6 +178,10 @@
       <div
         class="flex align-start mt-1">
         <input
+          #experience
+          (input)="updateFormControlValue(experience)"
+          [ngClass]="checkDisable(form, 'experience') ? 'opacity-80' : ''"
+          [style]="get(form,'experience') ? {'border-color': 'red'} : {'border': ''}"
           class="
           border-t
           border-l
@@ -171,6 +198,7 @@
           placeholder=""
           value="3"/>
         <button
+          [style]="get(form,'experience') ? {'border-color': 'red'} : {'border': ''}"
           class="
           pr-[15px]
           bg-[#F8F8FA]
@@ -181,7 +209,17 @@
           border-r
           border-b
           border-600">
-          Edit
+          <span
+            (click)="saveFormControl(form, 'experience')"
+            *ngIf="experience.value && !checkDisable(form, 'experience')"
+            class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'experience')"
+            *ngIf="checkDisable(form, 'experience')">
+            Edit
+          </span>
         </button>
       </div>
       <span

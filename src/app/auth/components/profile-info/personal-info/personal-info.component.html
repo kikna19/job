@@ -116,12 +116,10 @@
           </span>
     </div>
 
-    <div [hidden]="!password.value" class="flex flex-col mt-6">
+    <div class="flex flex-col mt-6">
       <label for="password">Password</label>
       <div class="flex align-start mt-1">
         <input
-          #password
-          (input)="password.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
           [ngClass]="checkDisable(form, 'password') ? 'opacity-80' : ''"
           [style]="get(form,'password') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -164,7 +162,7 @@
             Required
           </span>
     </div>
-    <div [hidden]="!phone.value" class="flex flex-col mt-6">
+    <div  class="flex flex-col mt-6">
       <label for="phone">Phone</label>
       <div class="relative flex items-center w-auto">
         <label
@@ -231,7 +229,7 @@
         </ng-container>
         <input
           #phone
-          (input)="phone.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          (input)="updateFormControlValue(phone, form, 'phone')"
           [ngClass]="checkDisable(form, 'phone') ? 'opacity-80' : ''"
           [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -274,12 +272,12 @@
             Required
           </span>
     </div>
-    <div [hidden]="!email.value" class="flex flex-col mt-6">
+    <div class="flex flex-col mt-6">
       <label for="email">Email</label>
       <div class="flex align-start mt-1">
         <input
           #email
-          (input)="email.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          (input)="updateFormControlValue(email, form, 'email')"
           [ngClass]="checkDisable(form, 'email') ? 'opacity-80' : ''"
           [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -326,7 +324,7 @@
       <div class="flex align-start mt-1">
         <input
           #city
-          (input)="city.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          (input)="updateFormControlValue(city, form, 'city')"
           [ngClass]="checkDisable(form, 'city') ? 'opacity-80' : ''"
           [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"
           class="

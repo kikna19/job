@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ProfileInfoService} from "../../services/profile-info.service";
 
 @Component({
   selector: 'app-profile-info',
@@ -7,34 +8,36 @@ import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup, V
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  user: any;
   form: FormArray;
-  firstForm: FormGroup;
-  secondForm: FormGroup;
-  thirdForm: FormGroup;
-  fourthForm: FormGroup;
-  fifthForm: FormGroup;
+  personalForm: FormGroup;
+  experienceForm: FormGroup;
+  situationForm: FormGroup;
+  cvForm: FormGroup;
+  ecvFrom: FormGroup;
   education: FormArray;
   educationForm: FormGroup;
 
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private profileInfoService: ProfileInfoService
   ) {
     this.form = this.fb.array([
-      this.firstForm = this.fb.group({
-        firstName: ['john', Validators.required],
+      this.personalForm = this.fb.group({
+        firstName: [this.user?.firstName, Validators.required],
         surName: ['doe', Validators.required],
-        phone: ['123', Validators.required],
-        password: ['123', Validators.required],
-        email: ['wer', Validators.required],
-        city: ['tbilisi', Validators.required],
+        phone: ['12345678', Validators.required],
+        password: ['12345678', Validators.required],
+        email: ['a@a.com', Validators.required],
+        city: ['', Validators.required],
       }),
-      this.secondForm = this.fb.group({
+      this.experienceForm = this.fb.group({
         occupation: ['', Validators.required],
         stack: ['', Validators.required],
         experience: ['', Validators.required],
       }),
-      this.thirdForm = this.fb.group({
+      this.situationForm = this.fb.group({
         hiredOne: ['', Validators.required],
         hiredTwo: ['', Validators.required],
         company: ['', Validators.required],
@@ -43,10 +46,10 @@ export class ProfileComponent implements OnInit {
         bonusTwo: ['', Validators.required],
         bonus: ['', Validators.required],
       }),
-      this.fourthForm = this.fb.group({
+      this.cvForm = this.fb.group({
         cv: ['', Validators.required],
       }),
-      this.fifthForm = this.fb.group({
+      this.ecvFrom = this.fb.group({
         intro: ['', Validators.required],
         language: ['', Validators.required],
         education: this.fb.array([
@@ -63,13 +66,14 @@ export class ProfileComponent implements OnInit {
         ])
       })
     ]);
+    this.profileInfoService.getFullInfo().subscribe(user => this.user = user)
   }
 
 
 
   ngOnInit(): void {
-    this.disableInput(this.firstForm, ['firstName', 'surName', 'phone', 'password', 'email', 'city']);
-    this.getControls(this.firstForm)
+    this.disableInput(this.personalForm, ['firstName', 'surName', 'phone', 'password', 'email', 'city']);
+    this.getControls(this.personalForm)
   }
 
   disableInput(form: FormGroup, controls: string[]): void {

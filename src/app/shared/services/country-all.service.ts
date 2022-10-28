@@ -9,7 +9,9 @@ export interface Country {
   alpha3Code: string;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CountryAllService {
 
 
