@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {PersonalInfo} from "../models/user.state";
+import {Observable, of} from "rxjs";
+
+export type UserInfo = Pick<PersonalInfo, "firstName" | "lastName" | "phoneNumber" | "city">;
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +12,54 @@ export class ProfileInfoService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
 
-  refreshToken(){
+  refreshToken() {
     const headers = new HttpHeaders({
       'accept': 'application/json',
       'Content-Type': 'application/json',
     });
     const body = JSON.stringify({
       "email": "kiknadzevazha@gmail.com",
-      "refreshToken": "3EFAAC71DFE377EFB91094EF081CD66DE0BB2B1A4B547AD30F28439592A8BC7F964295D2DF11C131"
+      "refreshToken": "9767CC471C7E4A2C8E2FFAA35606E4506B2BD304C191D0B55DA9F5825A38BA0E6C5E99C307AAA82A",
     })
-    return this.http.post('https://jobboard.admi.ge/api/api/v1/account/refresh-token',body, {headers: headers})
+    return this.http.post('https://jobboard.admi.ge/api/api/v1/account/refresh-token', body, {headers: headers})
   }
 
-  getFullInfo(){
+  getFullInfo() {
     const headers = new HttpHeaders({
       'accept': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbF9hZGRyZXNzIjoia2lrbmFkemV2YXpoYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInN1YiI6IjQybDBBM1prYkRtIiwibmJmIjoxNjY2OTY4MDI3LCJleHAiOjE2NjY5NzE2MjcsImlzcyI6ImpvYmJvYXJkLmFwaSIsImF1ZCI6ImpvYmJvYXJkLnVzZXIifQ.uPL4Jp_Rxd6SwJfdYWnSYYHddcE3PShr9qnrua-BroI'
-
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbF9hZGRyZXNzIjoia2lrbmFkemV2YXpoYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInN1YiI6IjQybDBBM1prYkRtIiwibmJmIjoxNjY3MDUzMTcyLCJleHAiOjE2NjcwNTY3NzIsImlzcyI6ImpvYmJvYXJkLmFwaSIsImF1ZCI6ImpvYmJvYXJkLnVzZXIifQ.jdZwIVGFUGdFSqySnHGuopIpVTM78KMMLlXJZZB16bM'
     })
-   return this.http.get('https://jobboard.admi.ge/api/api/v1/account/own-profile', {headers: headers})
+    return this.http.get('https://jobboard.admi.ge/api/api/v1/account/own-profile', {headers: headers})
+  }
+
+  updateUser(query: string, value: string): Observable<any> {
+    const UPDATE_URL = 'https://jobboard.admi.ge/api/api/v1/user-info/update-';
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbF9hZGRyZXNzIjoia2lrbmFkemV2YXpoYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInN1YiI6IjQybDBBM1prYkRtIiwibmJmIjoxNjY3MDUzMTcyLCJleHAiOjE2NjcwNTY3NzIsImlzcyI6ImpvYmJvYXJkLmFwaSIsImF1ZCI6ImpvYmJvYXJkLnVzZXIifQ.jdZwIVGFUGdFSqySnHGuopIpVTM78KMMLlXJZZB16bM'
+    });
+    switch (query) {
+      case 'firstName': {
+        return this.http.put(`${UPDATE_URL}firstname`, {"firstname": `${value}`}, {headers: headers})
+      }
+      case 'lastName': {
+        console.log(query + ' +');
+        return this.http.put(`${UPDATE_URL}lastname`, {"lastname": `${value}`}, {headers: headers})
+      }
+      case 'city': {
+        return this.http.put(`${UPDATE_URL}city`, {"cityName": `${value}`}, {headers: headers})
+      }
+      case 'phone': {
+        return this.http.put(`${UPDATE_URL}phone`, {"phoneNumber": `${value}`}, {headers: headers})
+      }
+      default:
+        return of(null);
+    }
+
   }
 }

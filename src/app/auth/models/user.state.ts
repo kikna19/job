@@ -28,10 +28,19 @@ export interface signUpUser {
   firstName: string;
   lastName: string;
   password: string;
-  repeatPassword: string;
   email: string;
   phoneNumber: string;
   cv?: string;
+}
+
+export interface PersonalInfo {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  city?: {
+    friendlyName: string
+  }
 }
 
 export interface SignUpResponse {
@@ -41,11 +50,12 @@ export interface SignUpResponse {
   errors?: errors;
 }
 
-export interface ExternalLogin{
+export interface ExternalLogin {
   providerType: string;
   token: string;
 }
-export interface PasswordResetActionRequest{
+
+export interface PasswordResetActionRequest {
   email: string
 }
 

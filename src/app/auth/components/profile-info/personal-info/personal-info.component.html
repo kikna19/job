@@ -17,7 +17,6 @@
       <div class="flex align-start mt-1">
         <input
           #firstName
-          (input)="firstName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
           [ngClass]="checkDisable(form, 'firstName') ? 'opacity-80' : ''"
           [style]="get(form,'firstName') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -47,8 +46,12 @@
           border-r
           border-b
           border-600">
-          <span (click)="saveFormControl(form, 'firstName')" *ngIf="firstName.value && !checkDisable(form, 'firstName')"
-                class="text-green-600">Save</span>
+          <span
+            (click)="updateUserInfo(form, 'firstName', firstName.value)"
+            *ngIf="firstName.value && !checkDisable(form, 'firstName')"
+            class="text-green-600">
+            Save
+          </span>
           <span (click)="editFormControl(form, 'firstName')" *ngIf="checkDisable(form, 'firstName')">Edit</span>
         </button>
       </div>
@@ -61,13 +64,13 @@
           </span>
     </div>
     <div class="flex flex-col mt-6">
-      <label for="surName">Surname</label>
+      <label for="lastName">Surname</label>
       <div class="flex align-start mt-1">
         <input
-          #surName
-          (input)="surName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
-          [ngClass]="checkDisable(form, 'surName') ? 'opacity-80' : ''"
-          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"
+          #lastName
+          (input)="lastName.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md')"
+          [ngClass]="checkDisable(form, 'lastName') ? 'opacity-80' : ''"
+          [style]="get(form,'lastName') ? {'border-color': 'red'} : {'border': ''}"
           class="
           border-t
           border-l
@@ -79,11 +82,11 @@
           h-12
           bg-[#F8F8FA]
           pl-4"
-          formControlName="surName"
-          id="surName"
+          formControlName="lastName"
+          id="lastName"
           value="Shvangirazde"/>
         <button
-          [style]="get(form,'surName') ? {'border-color': 'red'} : {'border': ''}"
+          [style]="get(form,'lastName') ? {'border-color': 'red'} : {'border': ''}"
           class="
           pr-[15px]
           bg-[#F8F8FA]
@@ -95,20 +98,20 @@
           border-b
           border-600">
           <span
-            (click)="saveFormControl(form, 'surName')"
-            *ngIf="surName.value && !checkDisable(form, 'surName')"
+            (click)="updateUserInfo(form, 'lastName', lastName.value)"
+            *ngIf="lastName.value && !checkDisable(form, 'lastName')"
             class="text-green-600">
             Save
           </span>
           <span
-            (click)="editFormControl(form, 'surName')"
-            *ngIf="checkDisable(form, 'surName')">
+            (click)="editFormControl(form, 'lastName')"
+            *ngIf="checkDisable(form, 'lastName')">
             Edit
           </span>
         </button>
       </div>
       <span
-        *ngIf="get(form, 'surName')"
+        *ngIf="get(form, 'lastName')"
         class="
             mt-2
             text-red-500">
@@ -162,7 +165,7 @@
             Required
           </span>
     </div>
-    <div  class="flex flex-col mt-6">
+    <div class="flex flex-col mt-6">
       <label for="phone">Phone</label>
       <div class="relative flex items-center w-auto">
         <label
@@ -171,10 +174,10 @@
           (toggle)="showDropdown = !showDropdown"
           appClickOut
           class="
+          drop-label
           cursor-pointer
           h-full
           absolute
-          pt-[2px]
           ml-4
           w-[72px]
           flex
@@ -189,6 +192,7 @@
         <ng-container *ngIf="showDropdown">
           <div
             class="
+            z-10
             absolute
             top-14
             rounded
@@ -229,7 +233,6 @@
         </ng-container>
         <input
           #phone
-          (input)="updateFormControlValue(phone, form, 'phone')"
           [ngClass]="checkDisable(form, 'phone') ? 'opacity-80' : ''"
           [style]="get(form,'phone') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -259,8 +262,18 @@
           border-r
           border-b
           border-600">
-         <span>
+         <span >
+           <span
+             (click)="updateUserInfo(form, 'phone', phone.value)"
+             *ngIf="lastName.value && !checkDisable(form, 'phone')"
+             class="text-green-600">
+            Save
+          </span>
+          <span
+            (click)="editFormControl(form, 'phone')"
+            *ngIf="checkDisable(form, 'phone')">
             Edit
+          </span>
           </span>
         </button>
       </div>
@@ -276,17 +289,12 @@
       <label for="email">Email</label>
       <div class="flex align-start mt-1">
         <input
-          #email
-          (input)="updateFormControlValue(email, form, 'email')"
           [ngClass]="checkDisable(form, 'email') ? 'opacity-80' : ''"
           [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"
           class="
-          border-t
-          border-l
-          border-b
+          border
           border-600
-          rounded-tl-md
-          rounded-bl-md
+          rounded-md
           w-full
           h-12
           bg-[#F8F8FA]
@@ -294,22 +302,6 @@
           formControlName="email"
           id="email"
           placeholder="Mamuka.bolkvadze"/>
-        <button
-          [style]="get(form,'email') ? {'border-color': 'red'} : {'border': ''}"
-          class="
-          pr-[15px]
-          bg-[#F8F8FA]
-          h-12
-          rounded-tr-md
-          rounded-br-md
-          border-t
-          border-r
-          border-b
-          border-600">
-          <span>
-            Change
-          </span>
-        </button>
       </div>
       <span
         *ngIf="get(form, 'email')"
@@ -324,7 +316,6 @@
       <div class="flex align-start mt-1">
         <input
           #city
-          (input)="updateFormControlValue(city, form, 'city')"
           [ngClass]="checkDisable(form, 'city') ? 'opacity-80' : ''"
           [style]="get(form,'city') ? {'border-color': 'red'} : {'border': ''}"
           class="
@@ -354,7 +345,7 @@
           border-b
           border-600">
          <span
-           (click)="saveFormControl(form, 'city')"
+           (click)="updateUserInfo(form, 'city', city.value)"
            *ngIf="city.value && !checkDisable(form, 'city')"
            class="text-green-600">
             Save

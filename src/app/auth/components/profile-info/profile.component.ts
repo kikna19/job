@@ -1,13 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProfileInfoService} from "../../services/profile-info.service";
 
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent{
   user: any;
   form: FormArray;
   personalForm: FormGroup;
@@ -21,15 +20,15 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private profileInfoService: ProfileInfoService
   ) {
     this.form = this.fb.array([
       this.personalForm = this.fb.group({
-        firstName: [this.user?.firstName, Validators.required],
-        surName: ['doe', Validators.required],
-        phone: ['12345678', Validators.required],
-        password: ['12345678', Validators.required],
-        email: ['a@a.com', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        phone: ['', Validators.required],
+        country: ['', Validators.required],
+        password: ['********', Validators.required],
+        email: ['', Validators.required],
         city: ['', Validators.required],
       }),
       this.experienceForm = this.fb.group({
@@ -66,27 +65,7 @@ export class ProfileComponent implements OnInit {
         ])
       })
     ]);
-    this.profileInfoService.getFullInfo().subscribe(user => this.user = user)
   }
-
-
-
-  ngOnInit(): void {
-    this.disableInput(this.personalForm, ['firstName', 'surName', 'phone', 'password', 'email', 'city']);
-    this.getControls(this.personalForm)
-  }
-
-  disableInput(form: FormGroup, controls: string[]): void {
-    controls.forEach(c => {
-      if (form.get(c)?.value)
-        form.get(c)?.disable();
-    });
-  }
-
-  getControls(form: FormGroup){
-    console.log(form.controls);
-  }
-
 
 
 

@@ -2,6 +2,10 @@ input {
   outline: none;
 }
 
+.drop-label {
+  padding-top: 2px;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   opacity: 0;
@@ -9,12 +13,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 764px) {
   .main {
-    width: auto
+    width: auto;
+
+    .drop-label {
+      padding-top: 0;
+    }
   }
 }
 
 @media (max-width: 380px) {
-  .main{
+  .main {
     padding: 1rem;
   }
 }

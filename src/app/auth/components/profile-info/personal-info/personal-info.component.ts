@@ -1,17 +1,19 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {Country, CountryAllService} from "../../../../shared/services/country-all.service";
-import {Observable} from "rxjs";
-import {UserState} from "../../../models/user.state";
-import {ProfileInfoService} from "../../../services/profile-info.service";
+import {concatMap, distinctUntilChanged, map, Observable, Subscription, switchMap, take} from "rxjs";
+import {PersonalInfo, UserState} from "../../../models/user.state";
+import {ProfileInfoService, UserInfo} from "../../../services/profile-info.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss']
 })
-export class PersonalInfoComponent implements OnInit {
-  user: any;
+export class PersonalInfoComponent implements OnInit, OnDestroy {
+  country$: Subscription;
+  userInfo$: Subscription;
   countries: Country[];
   private countriesCopy: Country[] = [];
   @Input() form: FormGroup;
@@ -24,27 +26,46 @@ export class PersonalInfoComponent implements OnInit {
   @ViewChild('callingCodeVal', {static: false}) callingCodeVal: ElementRef;
   @ViewChild('nameCodeVal', {static: false}) nameCodeVal: ElementRef;
   @ViewChild('phone', {static: false}) phone: ElementRef;
+  formControls: string[] = ['firstName', 'lastName', 'phone', 'password', 'email', 'city'];
 
   constructor(
     private countriesService: CountryAllService,
-    private profileInfoService: ProfileInfoService
+    private profileInfoService: ProfileInfoService,
+    private authService: AuthService
   ) {
   }
 
   ngOnInit(): void {
-    this.countriesService.getCountryCodes()
+
+
+    // this.profileInfoService.refreshToken().subscribe(console.log)
+
+// this.authService.logIn('','').subscribe(console.log)
+
+    this.userInfo$ = this.profileInfoService.getFullInfo().pipe(
+      map((user: any): void => {
+        this.setControlValues(this.form, user);
+      }),
+    ).subscribe();
+    this.country$ = this.countriesService.getCountryCodes()
       .subscribe(
         res => {
           this.countries = res;
           const defaultCountry: Country = <Country>this.countries.find((item: Country) => item.name === 'Netherlands');
           this.imgUrl = defaultCountry.flag;
-          this.callingCode = '+' + defaultCountry.callingCodes;
+          this.callingCode = '+' + defaultCountry.callingCodes[0];
+          this.savePhone(this.callingCode);
           this.nameCode = defaultCountry.name;
           this.countriesCopy = this.countries;
         }
       );
-    this.user = this.profileInfoService.getFullInfo().subscribe();
+  }
 
+  disableInput(form: FormGroup): void {
+    this.formControls.forEach(c => {
+      if (form.get(c)?.value)
+        form.get(c)?.disable();
+    });
   }
 
 
@@ -72,28 +93,27 @@ export class PersonalInfoComponent implements OnInit {
     this.callingCode = '+' + code;
     this.nameCode = name;
     this.showDropdown = false;
+    this.savePhone(this.callingCode[0]);
   }
 
   editFormControl(form: FormGroup, control: string): void {
     form.get(control)?.enable();
   }
 
-  updateFormControlValue(elementId: any, form: FormGroup, control: string): void {
-    elementId.classList.remove('border-r', 'rounded-br-md', 'rounded-tr-md');
+
+  updateUserInfo(form: FormGroup, control: string, controlValue: string): void {
+    this.profileInfoService.updateUser(control, controlValue).pipe(
+      map((user: any): void => {
+        this.setControlValues(this.form, user);
+        form.get(control)?.disable();
+      }),
+    )
+      .subscribe();
   }
 
-  saveFormControl(form: FormGroup, control: string): void {
-    form.get(control)?.disable();
-  }
-
-  savePhone() {
-    this.saveFormControl(this.form, 'phone');
-    this.form.get('country')?.setValue([
-      this.callingCodeVal.nativeElement.innerHTML,
-      this.nameCodeVal.nativeElement.innerHTML,
-    ]);
-    this.saveFormControl(this.form, 'country');
-
+  savePhone(countryValue: string): void {
+    this.form.get('country')?.setValue(countryValue);
+    this.form.get('country')?.disable();
   }
 
 
@@ -108,8 +128,27 @@ export class PersonalInfoComponent implements OnInit {
     return !!form.get(control)?.disabled;
   }
 
-  log(a: any) {
-    console.log(a);
+
+  setControlValues(form: FormGroup, user: PersonalInfo): void {
+    this.formControls.forEach((c: any) => {
+      if (c === 'firstName')
+        form.get(c)?.setValue(user?.firstName)
+      if (c === 'lastName')
+        form.get(c)?.setValue(user?.lastName)
+      if (c === 'phone')
+        form.get(c)?.setValue(user?.phoneNumber)
+      if (c === 'email')
+        form.get(c)?.setValue(user?.email)
+      if (c === 'city')
+        form.get(c)?.setValue(user.city?.friendlyName)
+    });
+    this.disableInput(form);
   }
+
+  ngOnDestroy() {
+    this.userInfo$.unsubscribe();
+    this.country$.unsubscribe();
+  }
+
 
 }

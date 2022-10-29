@@ -14,7 +14,6 @@ import {WorkExperieceComponent} from './components/profile-info/work-experiece/w
 import {CurrentSituationComponent} from './components/profile-info/current-situation/current-situation.component';
 import {CvComponent} from './components/profile-info/cv/cv.component';
 import {ECvComponent} from './components/profile-info/e-cv/e-cv.component';
-import {CountryAllService} from "../shared/services/country-all.service";
 import {SingupInfoComponent} from "./components/singup-info/singup-info.component";
 import { SignupSuccessComponent } from './components/signup-success/signup-success.component';
 import {HttpClientModule} from "@angular/common/http";
