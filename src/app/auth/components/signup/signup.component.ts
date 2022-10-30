@@ -31,9 +31,9 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     // this.googleAuthSDK();
-    this.subscription = this.error$.subscribe((message:any) => {
-      this.alert.error(message);
-    });
+    // this.subscription = this.error$.subscribe((message:any) => {
+    //   this.alert.error(message);
+    // });
   }
 
  // handleCredentialResponse(response: CredentialResponse) {
@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
 
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
 

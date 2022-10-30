@@ -262,10 +262,10 @@
           border-r
           border-b
           border-600">
-         <span >
+         <div>
            <span
              (click)="updateUserInfo(form, 'phone', phone.value)"
-             *ngIf="lastName.value && !checkDisable(form, 'phone')"
+             *ngIf="phone.value && !checkDisable(form, 'phone')"
              class="text-green-600">
             Save
           </span>
@@ -274,7 +274,7 @@
             *ngIf="checkDisable(form, 'phone')">
             Edit
           </span>
-          </span>
+          </div>
         </button>
       </div>
       <span

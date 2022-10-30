@@ -190,6 +190,21 @@
         justify-content-end
         items-end">
         <button
+          [disabled]="!!personalForm.enabled"
+          class="
+          mr-4
+          disabled:bg-green-300
+          bg-green-800
+          text-white
+          pt-2
+          pb-2
+          pl-4
+          pr-4
+          font-bold
+          rounded">
+          Finish(temporary)
+        </button>
+        <button
           (click)="work.click()"
           [disabled]="!!personalForm.enabled"
           class="

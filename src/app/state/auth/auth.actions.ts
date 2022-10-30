@@ -150,6 +150,7 @@ export class NewPasswordFailure implements Action {
 }
 
 
+
 export class LogOut implements Action {
   readonly type = AuthAction.LogOut;
 

@@ -3,15 +3,14 @@ import {Router} from '@angular/router';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, map, mergeMap, of, switchMap, tap} from 'rxjs';
 import {AuthService} from 'src/app/auth/services/auth.service';
-import {AuthAction, LoginFailure, LoginSuccess, SignUpFailure, SignUpSuccess} from "./auth.actions";
+import {AuthAction, LoginFailure, LoginRequest, LoginSuccess, SignUpFailure, SignUpSuccess} from "./auth.actions";
 
 @Injectable()
 export class AuthEffects {
-
   loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthAction.LoginRequest),
-      switchMap((action) =>
+      switchMap((action: LoginRequest) =>
         this.authService
           .logIn('', '')
           .pipe(
@@ -98,9 +97,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthAction.SignUpSuccess),
         tap((signUpResponse) => {
-          alert('sign up success')
-          // this.router.navigateByUrl('/');
-          // this.router.navigateByUrl('/auth/signup-status');
+          this.router.navigateByUrl('/auth/signup-status');
         })
       ),
     {dispatch: false}

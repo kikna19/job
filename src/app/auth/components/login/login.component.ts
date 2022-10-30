@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit(): Promise<any> {
-    console.log(this.loginForm.value.email);
     this.store.dispatch(new LoginRequest({
       email: 'kiknadzevazha@gmail.com',
       password:'asdfas1234',

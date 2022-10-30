@@ -21,6 +21,7 @@ import {CommonModule} from "@angular/common";
 import {AuthModule} from "./auth/auth.module";
 import {SharedModule} from "./shared/shared.module";
 import {appReducers, metaReducers} from "./state/app/app.reducers";
+import {InfoEffects} from "./state/personal-info/info.effects";
 
 // const googleLoginOptions: GoogleInitOptions = {
 //   oneTapEnabled: false,
@@ -42,7 +43,7 @@ export function tokenGetter() {
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(appReducers, {
+    StoreModule.forRoot(appReducers,  {
       metaReducers,
       runtimeChecks: {
         // strictStateImmutability and strictActionImmutability are enabled by default
@@ -52,7 +53,7 @@ export function tokenGetter() {
         strictActionTypeUniqueness: true,
       },
     }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, InfoEffects]),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

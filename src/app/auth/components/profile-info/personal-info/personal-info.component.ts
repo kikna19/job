@@ -1,10 +1,12 @@
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {Country, CountryAllService} from "../../../../shared/services/country-all.service";
-import {concatMap, distinctUntilChanged, map, Observable, Subscription, switchMap, take} from "rxjs";
-import {PersonalInfo, UserState} from "../../../models/user.state";
-import {ProfileInfoService, UserInfo} from "../../../services/profile-info.service";
+import {concatMap, map, Observable, Subscription} from "rxjs";
+import {PersonalInfo} from "../../../models/user.state";
+import {ProfileInfoService} from "../../../services/profile-info.service";
 import {AuthService} from "../../../services/auth.service";
+import {Store} from "@ngrx/store";
+import {UpdateUserInfo} from "../../../../state/personal-info/info.actions";
 
 @Component({
   selector: 'app-personal-info',
@@ -12,7 +14,8 @@ import {AuthService} from "../../../services/auth.service";
   styleUrls: ['./personal-info.component.scss']
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
-  country$: Subscription;
+  user: PersonalInfo;
+  country$: Observable<any>;
   userInfo$: Subscription;
   countries: Country[];
   private countriesCopy: Country[] = [];
@@ -31,34 +34,39 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   constructor(
     private countriesService: CountryAllService,
     private profileInfoService: ProfileInfoService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {
   }
 
   ngOnInit(): void {
 
-
     // this.profileInfoService.refreshToken().subscribe(console.log)
 
-// this.authService.logIn('','').subscribe(console.log)
+    // this.authService.logIn('','').subscribe(console.log)
 
     this.userInfo$ = this.profileInfoService.getFullInfo().pipe(
       map((user: any): void => {
+        this.user = user;
+        console.log(this.user);
+        console.log(this.user.phoneNumber.substring(0, this.user.phoneNumber.indexOf(' ')));
         this.setControlValues(this.form, user);
       }),
+      concatMap(_ => this.country$),
     ).subscribe();
-    this.country$ = this.countriesService.getCountryCodes()
-      .subscribe(
-        res => {
-          this.countries = res;
-          const defaultCountry: Country = <Country>this.countries.find((item: Country) => item.name === 'Netherlands');
-          this.imgUrl = defaultCountry.flag;
-          this.callingCode = '+' + defaultCountry.callingCodes[0];
-          this.savePhone(this.callingCode);
-          this.nameCode = defaultCountry.name;
-          this.countriesCopy = this.countries;
-        }
-      );
+    this.country$ = this.countriesService.getCountryCodes().pipe(
+      map(res => {
+        this.countries = res;
+        const defaultCountry: Country = <Country>this.countries
+          .find((item: Country) =>
+            item.callingCodes[0] === this.user.phoneNumber.substring(0, this.user.phoneNumber.indexOf(' ')));
+        this.imgUrl = defaultCountry.flag;
+        this.callingCode = '+' + defaultCountry.callingCodes[0];
+        this.savePhone(defaultCountry.callingCodes[0]);
+        this.nameCode = defaultCountry.name;
+        this.countriesCopy = this.countries;
+      })
+    )
   }
 
   disableInput(form: FormGroup): void {
@@ -72,7 +80,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   openDropdown(): void {
     this.showDropdown = true;
   }
-
 
   searchCountry(e: any): void {
     if (e.target.value !== null &&
@@ -91,9 +98,10 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   selectCountry(imgUrl: string, code: string, name: string): void {
     this.imgUrl = imgUrl;
     this.callingCode = '+' + code;
+    this.savePhone(code[0]);
     this.nameCode = name;
     this.showDropdown = false;
-    this.savePhone(this.callingCode[0]);
+    this.countries = this.countriesCopy;
   }
 
   editFormControl(form: FormGroup, control: string): void {
@@ -102,13 +110,21 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 
   updateUserInfo(form: FormGroup, control: string, controlValue: string): void {
-    this.profileInfoService.updateUser(control, controlValue).pipe(
-      map((user: any): void => {
-        this.setControlValues(this.form, user);
-        form.get(control)?.disable();
-      }),
-    )
-      .subscribe();
+    const phoneVal = this.form.get('country')?.value + ' ' + controlValue;
+    console.log(phoneVal);
+    if (control === 'phone') {
+      this.store.dispatch(new UpdateUserInfo({
+          control: control,
+          value: phoneVal,
+        })
+      );
+    } else
+      this.store.dispatch(new UpdateUserInfo({
+          control: control,
+          value: controlValue,
+        })
+      );
+    form.get(control)?.disable();
   }
 
   savePhone(countryValue: string): void {
@@ -136,7 +152,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       if (c === 'lastName')
         form.get(c)?.setValue(user?.lastName)
       if (c === 'phone')
-        form.get(c)?.setValue(user?.phoneNumber)
+        form.get(c)?.setValue(user?.phoneNumber.substring(user?.phoneNumber.indexOf(' ') + 1));
       if (c === 'email')
         form.get(c)?.setValue(user?.email)
       if (c === 'city')
@@ -147,7 +163,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userInfo$.unsubscribe();
-    this.country$.unsubscribe();
   }
 
 

@@ -1,11 +1,11 @@
 <div>
   <div class="auth_header">
-    <img [routerLink]="'/'" src="../../../../assets/images/logo/header_logo.svg" alt="WeCruitment" class="center" />
+    <img [routerLink]="'/'" src="./assets/images/logo/header_logo.svg" alt="WeCruitment" class="center" />
   </div>
   <div class="wrapper">
     <div class="container">
       <div>
-        <img src="../../../../assets/images/icon/tick-circle.svg" class="center" />
+        <img src="./assets/images/icon/tick-circle.svg" class="center" />
       </div>
       <div class="title">
         <span>Your request Successfully Sent</span>
@@ -16,7 +16,7 @@
                 </span>
       </div>
       <div class="search">
-        <button type="button" class="btn btn-search">
+        <button type="button" class="btn btn-search" [routerLink]="'/'">
           <span> Go to search page</span>
         </button>
       </div>

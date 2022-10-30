@@ -1,11 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlertService} from 'src/app/alert/alert.service';
 import {Subscription} from 'rxjs';
 import {SignUpRequest} from "../../../state/auth/auth.actions";
 import {Country, CountryAllService} from "../../../shared/services/country-all.service";
 import {FormValidator} from "../../../shared/validators/form.validator";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-singup-info',
@@ -30,6 +31,7 @@ export class SingupInfoComponent implements OnInit {
     private fb: FormBuilder,
     private alert: AlertService,
     private countriesService: CountryAllService,
+    private router: Router
   ) {
     this.signupForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -63,6 +65,8 @@ export class SingupInfoComponent implements OnInit {
   }
 
   async onSubmitUserDetails(): Promise<any> {
+
+    this.router.navigateByUrl('/auth/signup-status');
     const countryCode = this.signupForm.get('country')?.value;
     const controls: any[] = <any>this.signupForm.controls;
     const [
@@ -74,14 +78,22 @@ export class SingupInfoComponent implements OnInit {
       password,
     ]: string[] = Object.keys(controls).map((key: any) => controls[key].value);
     if (this.signupForm.valid) {
-      this.store.dispatch(new SignUpRequest({
+      console.log({
         firstName: firstName,
         lastName: lastName,
         password: password,
         email: email,
         phoneNumber: countryCode + ' ' + phone,
         cv: '',
-      }));
+      })
+      // this.store.dispatch(new SignUpRequest({
+      //   firstName: firstName,
+      //   lastName: lastName,
+      //   password: password,
+      //   email: email,
+      //   phoneNumber: countryCode + ' ' + phone,
+      //   cv: '',
+      // }));
     }
   }
 
