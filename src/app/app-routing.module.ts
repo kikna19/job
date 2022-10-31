@@ -10,6 +10,8 @@ import {
 import {LandingComponent} from "./shared/components/layout/landing/landing.component";
 import {LayoutComponent} from "./shared/components/layout/layout.component";
 import {SignupComponent} from "./auth/components/signup/signup.component";
+import {ConfirmComponent} from "./auth/components/confirm-account/confirm.component";
+import {ResetPasswordComponent} from "./auth/components/reset-password/reset-password.component";
 
 const routes: Routes = [
   // {
@@ -34,6 +36,14 @@ const routes: Routes = [
     children: [
       { path: '', component: LandingComponent },
     ]
+  },
+  {
+    path: 'confirm',
+    component: ConfirmComponent,
+  },
+  {
+    path: 'reset',
+    component: ResetPasswordComponent,
   },
   {
     path: 'auth',

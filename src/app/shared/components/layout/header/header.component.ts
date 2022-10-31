@@ -21,6 +21,7 @@ import * as AuthActions from 'src/app/state/auth/auth.actions';
 })
 export class HeaderComponent implements OnInit {
 
+  isAuthenticated: boolean = !!localStorage.getItem('jwt');
   constructor(private store: Store,public auth: AuthService,private socialAuthService: SocialAuthService) {
   }
   ngOnInit(): void {

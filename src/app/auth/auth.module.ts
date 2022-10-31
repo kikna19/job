@@ -17,6 +17,8 @@ import {ECvComponent} from './components/profile-info/e-cv/e-cv.component';
 import {SingupInfoComponent} from "./components/singup-info/singup-info.component";
 import { SignupSuccessComponent } from './components/signup-success/signup-success.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ConfirmComponent } from './components/confirm-account/confirm.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import {HttpClientModule} from "@angular/common/http";
     CvComponent,
     ECvComponent,
     SignupSuccessComponent,
+    ConfirmComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     SharedModule,

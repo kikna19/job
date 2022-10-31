@@ -16,6 +16,9 @@ export class LayoutComponent implements OnInit {
   constructor(private store: Store,private http: HttpClient,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
+
     this.route.queryParams
       .subscribe(params => {
         if (params['code']) {

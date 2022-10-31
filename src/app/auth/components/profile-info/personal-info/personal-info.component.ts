@@ -7,6 +7,7 @@ import {ProfileInfoService} from "../../../services/profile-info.service";
 import {AuthService} from "../../../services/auth.service";
 import {Store} from "@ngrx/store";
 import {UpdateUserInfo} from "../../../../state/personal-info/info.actions";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-personal-info',
@@ -35,15 +36,20 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     private countriesService: CountryAllService,
     private profileInfoService: ProfileInfoService,
     private authService: AuthService,
-    private store: Store
+    private store: Store,
   ) {
   }
 
   ngOnInit(): void {
 
+
+
+
     // this.profileInfoService.refreshToken().subscribe(console.log)
 
     // this.authService.logIn('','').subscribe(console.log)
+
+    // this.profileInfoService.confirmEmail().subscribe(console.log)
 
     this.userInfo$ = this.profileInfoService.getFullInfo().pipe(
       map((user: any): void => {

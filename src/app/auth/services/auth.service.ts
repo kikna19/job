@@ -48,13 +48,52 @@ export class AuthService {
       // "uploadedCvId": `${cv}`,
       "firstName": "gio",
       "lastName": "gio",
-      "password":"12345678",
+      "password": "12345678",
       "phoneNumber": "995574079685",
       "email": "vazhakiknadze111@ens.tsu.edu.ge",
       "uploadedCvId": "string"
     })
     return this.http.post<SignUpResponse>('https://jobboard.admi.ge/api/api/v1/account/register-candidate', body, {headers: this.headers});
   }
+
+
+  confirmAccount(id: string, code: string) {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify({
+      "id": id,
+      "code": code
+    })
+    return this.http.post('https://jobboard.admi.ge/api/api/v1/account/confirm-account', body, {headers: headers})
+  }
+
+
+  forgotPassword(email: string) {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify({
+      "email": "vazhiko199@gmail.com"
+    })
+    return this.http.post('https://jobboard.admi.ge/api/api/v1/account/forgot-password', body, {headers: headers})
+  }
+
+  resetPassword(email: string, code: string, newPassword: string) {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
+    const body = JSON.stringify({
+      "email": email,
+      "code": code,
+      "password": "qwertyu1235)",
+    })
+    return this.http.post('https://jobboard.admi.ge/api/api/v1/account/reset-password', body, {headers: headers})
+  }
+
 
   externalLogIn(data: any): Observable<any> {
     const userData = {

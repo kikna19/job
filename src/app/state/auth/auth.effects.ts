@@ -49,8 +49,11 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthAction.LoginSuccess),
-        tap((loginResponse) => {
-          alert('success')
+        tap((loginResponse: LoginSuccess) => {
+          if (localStorage.getItem('jwt'))
+            localStorage.removeItem('jwt')
+          localStorage.setItem('jwt', JSON.stringify(loginResponse));
+          this.router.navigate([''])
         })
       ),
     {dispatch: false}

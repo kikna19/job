@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated: boolean = !!localStorage.getItem('jwt');
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.isAuthenticated);
   }
 
 }

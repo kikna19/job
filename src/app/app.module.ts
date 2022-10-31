@@ -22,6 +22,7 @@ import {AuthModule} from "./auth/auth.module";
 import {SharedModule} from "./shared/shared.module";
 import {appReducers, metaReducers} from "./state/app/app.reducers";
 import {InfoEffects} from "./state/personal-info/info.effects";
+import {RouterModule} from "@angular/router";
 
 // const googleLoginOptions: GoogleInitOptions = {
 //   oneTapEnabled: false,
